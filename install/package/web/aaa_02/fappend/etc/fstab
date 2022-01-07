@@ -1,0 +1,3 @@
+
+#--- Windows Samba sharing
+//192.168.2.102/temp      /mnt/smb/temp    cifs    username=guest,password=guest,nofail,iocharset=utf8,uid=1000,rw,vers=1.0,user  0  0

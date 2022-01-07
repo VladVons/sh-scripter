@@ -1,0 +1,5 @@
+#--- file sharing
+samba
+samba-vfs-modules
+cifs-utils
+#winbind

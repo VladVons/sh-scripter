@@ -1,0 +1,12 @@
+mpd
+#
+alsa-utils
+#alsa-base
+#pulseaudio
+mpg123
+
+#--- console player
+mpc
+
+#--- QT player
+#cantata

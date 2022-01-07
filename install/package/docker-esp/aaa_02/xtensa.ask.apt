@@ -1,0 +1,18 @@
+### for compiling xtensa-lx106-elf
+unrar-free 
+autoconf 
+automake 
+g++ 
+gperf
+flex 
+bison 
+texinfo 
+gawk 
+ncurses-dev 
+libexpat-dev
+python-dev 
+sed 
+help2man 
+bzip2 
+libtool-bin
+

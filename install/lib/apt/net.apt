@@ -1,0 +1,5 @@
+#--- internet
+dnsutils
+net-tools
+#nmap
+#pppoeconf

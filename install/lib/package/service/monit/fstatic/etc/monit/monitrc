@@ -1,0 +1,25 @@
+# check every 2 minutes
+set daemon 120
+
+with start delay 240
+
+set logfile /var/log/monit.log
+set idfile /var/lib/monit/id
+set statefile /var/lib/monit/state
+set eventqueue
+basedir /var/lib/monit/events
+slots 100
+set mailserver localhost
+set alert vladvons@gmail.com
+#set alert vladvons@gmail.com with reminder on 2 cycles
+
+#set mail-format 
+#{
+#  from: Monit ($HOST) <monit@foo.bar>
+#  reply-to: support@domain.com
+#  subject: $SERVICE $EVENT at $DATE
+#  message: Monit $ACTION $SERVICE at $DATE on $HOST: $DESCRIPTION
+#}
+
+include /etc/monit/conf.d/*
+include /etc/monit/conf-enabled/*

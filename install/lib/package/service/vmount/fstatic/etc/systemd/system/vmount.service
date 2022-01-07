@@ -1,0 +1,14 @@
+[Unit]
+Description=VMount (VladVons)
+After=multi-user.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/sbin/vmount.sh
+ExecStartPre=/bin/sleep 10
+#ExecStop=
+#Restart=always
+
+[Install]
+WantedBy=default.target

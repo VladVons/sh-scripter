@@ -1,0 +1,43 @@
+### MicroPython
+#https://hub.docker.com/r/scrlk/esp32-micropython
+#https://github.com/odditive/docker-micropython-esp32
+#https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/tools/idf-docker-image.html
+
+
+### local images path.
+docker info | grep -i "root"
+
+### search in repo
+docker search hello-world
+
+### update from repo
+docker pull hello-world
+
+### list
+docker images -a
+docker container ls -a
+
+### remove images
+docker rmi --force image_name
+docker rmi --force $(docker images -a -q)
+docker images -a | grep "pattern" | awk '{print $3}' | xargs docker rmi
+
+### remove all containers
+docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)
+docker container prune -a
+
+### remove images and containers
+docker system prune -a
+
+### docker run hello-world
+docker run -it hello-world
+
+### stop all containers
+docker stop $(docker ps -a -q)
+
+### attach container 
+docker attach container_id
+
+docker start container_id
+docker exec -it container_id bash

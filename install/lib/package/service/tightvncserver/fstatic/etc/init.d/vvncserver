@@ -1,0 +1,60 @@
+#!/bin/sh -e
+
+### BEGIN INIT INFO
+# Provides:          vvncserver
+# Required-Start:    $network $syslog
+# Required-Stop:     $network $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# X-Interactive:     true
+# Author:            VladVons@gmail.com
+# Short-Description: vvncserver
+# Description:       vvncserver daemon
+### END INIT INFO
+
+##--- after modify this file
+## systemctl daemon-reload
+## journalctl -u vvncserver
+## update-rc.d vvncserver defaults
+
+
+PATH=$PATH:/bin:/usr/bin:/sbin
+
+ENABLED=1
+USER=linux
+
+DEPTH=16
+GEOMETRY="1024x768"
+DISPLAY=1
+OPTIONS="-depth ${DEPTH} -geometry ${GEOMETRY} :${DISPLAY}"
+NAME=vvncserver
+#
+[ -e /etc/default/$NAME ] && . /etc/default/$NAME
+[ "$ENABLED" = "1" ] || exit 0
+
+. /lib/lsb/init-functions
+
+case "$1" in
+    start)
+        log_action_begin_msg "Start $NAME for user '${USER}' on display:${DISPLAY}"
+        su ${USER} -c "vncserver ${OPTIONS}"  >> /var/log/$Name.log
+        #/sbin/runuser -l $USER -c "/usr/bin/vncserver ${OPTIONS}"
+        ;;
+
+    stop)
+        log_action_begin_msg "Stop $NAME for user '${USER}' on display:${DISPLAY}"
+        su ${USER} -c "vncserver -kill :${DISPLAY}"
+        ;;
+
+    restart)
+        $0 stop
+        sleep 1
+        $0 start
+        ;;
+
+    *)
+        echo "Usage: $0 {start|stop|restart}" >&2
+        exit 1
+        ;;
+esac
+exit 0

@@ -1,0 +1,19 @@
+#--- Tools
+mc
+doublecmd-gtk
+rsync
+hardinfo
+p7zip-full
+
+#--- FS
+ntfs-3g
+
+#-- office
+libreoffice-l10n-uk
+
+@--- internet
+firefox-esr
+#icedtea-plugin
+
+#--- media
+audacious

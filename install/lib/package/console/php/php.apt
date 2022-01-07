@@ -1,0 +1,15 @@
+php
+#
+php-curl
+php-gd
+php-geoip
+php-json
+php-mbstring
+php-mysql
+php-opcache
+php-readline
+php-xml
+php-zip
+#
+#php-mcrypt # not suppurted in >php5.6
+libmcrypt4

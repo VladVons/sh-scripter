@@ -1,0 +1,68 @@
+- Folder size
+    du -h -s %f
+
+- Folder size sorted
+     du -h -d1 %d/ | sort -n -r
+     
+- File size sorted
+    find . -type f | xargs ls -s | sort -rn | head -n 25
+
+- Folder files count
+    find %f -type f | wc -l 
+
+- Folder dir count
+    find %f -type d | wc -l 
+
+#- LinkSym src
+#    srcF=`ls -l %f  | awk '{print $11}'`
+#    srcD=`dirname $srcF`
+#    cd $srcD
+
+- Strip comments #
+    grep "^[^\#]" %f
+
+- Strip comments ;
+    grep "^[^\;]" %f
+
+- Strip spaces
+    cp %f %f.bak
+    sed 's/^[ \t]*//;s/[ \t]*$//' %f.bak > %f
+
+- Compress Normal (.zip)
+    src=`basename %f /`
+    dst=%D/$src
+    zip -r $dst $src
+
+- Compress links (.tar.gz)
+    src=`basename %f /`
+    dst=%D/$src
+    tar cf - $src | gzip -f9 > "$dst"_lnk.tar.gz
+
+- Compress (.tar)
+    src=`basename %f /`
+    dst=%D/$src
+    tar -cf - $src > $dst.tar
+
+- Archive Unpack
+    /admin/conf/script/utils.sh ArchUnpack %d/%f %D
+
+- JPG optimize
+    /admin/conf/script/media.sh JpgCompress %f %D/%f
+
+- MP3 compress
+    /admin/conf/script/media.sh AudioCompress %f %D/%f
+
+
+Do something on the current file
+    CMD=%{Enter command}
+#    $CMD %f
+
+- Go to file
+    %d=/tmp
+    #if [ -L %f ]; then
+	#Dir=$(dirname $(readlink %f))
+	#if [ -d $Dir ]; then
+	    #cd $Dir
+	    #pwd 
+	#fi;
+    #fi;

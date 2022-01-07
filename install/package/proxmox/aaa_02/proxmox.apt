@@ -1,0 +1,74 @@
+#--- 
+# ProxMox debian VM server
+# VladVons@gmail.com
+#---
+
+
+#--- file manager
+#mc
+
+#--- info
+#htop
+#iftop
+#iotop
+
+#--- ups
+#apcupsd
+#apcupsd-cgi
+#nut
+
+#--- collectd 
+#collectd
+hddtemp
+#lm-sensors
+
+#--- services
+#fail2ban
+#monit
+
+#--- HDD services
+smartmontools
+hddtemp
+hdparm
+parted
+ntfs-3g
+
+#--- ACPI
+#acpid
+
+#--- mouse
+gpm
+
+#--- internet
+dnsutils
+net-tools
+pppoeconf
+lynx
+#git-core
+rsync
+axel
+wput
+wget
+
+
+#-- mail
+#postfix
+#libsasl2-modules
+
+
+#--- misc
+#screen
+#mbmon
+#stress
+
+#--- hardware
+#hardinfo
+#lshw
+
+#--- archiver
+zip
+unzip
+p7zip-full
+#rar
+#unrar
+unzstd

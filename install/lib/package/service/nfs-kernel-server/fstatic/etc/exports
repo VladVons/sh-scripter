@@ -1,0 +1,2 @@
+#/mnt/hdd/data1/pxe/nfs/raspi 192.168.2.0/24(rw,sync)
+/mnt/hdd/data1/pxe/nfs/raspi *(rw,sync,no_subtree_check,no_root_squash)

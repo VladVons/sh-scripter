@@ -1,0 +1,382 @@
+#!/bin/bash
+
+### BEGIN INIT INFO
+# Provides:          vmonit
+# Required-Start:    $network $syslog
+# Required-Stop:     $network $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# X-Interactive:     true
+# Author:            VladVons@gmail.com
+# Short-Description: vmonit
+# Description:       vmonit daemon
+### END INIT INFO
+
+
+# monit service doesnt work with FS, so write own service
+#
+#---  first run
+# update-rc.d vmonit defaults
+# systemctl enable vmonit
+# systemctl is-enabled vmonit
+#
+#--- after modify this file
+# systemctl daemon-reload
+# service vmonit restart
+# journalctl -u vmonit
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin
+
+NAME="vmonit"
+VER="1.08"
+DESCR="$NAME v$VER. Monitoring service"
+
+# Read default configuration variable
+cDebug=0
+cEnabled=0
+cSleep=60
+cDelay=10
+cMaxCnt=0
+cMailTo=
+cFileLog="/var/log/$NAME.log"
+cFilePid="/var/run/$NAME.pid"
+cFileDef="/etc/default/$NAME.sh"
+#cUser="root"
+
+cERR="err"
+cOK="ok"
+
+Scripter=/usr/lib/scripter/lib/conf.sh
+if [ -r $Scripter ]; then 
+  # we loose real $(pwd) while system call this file  
+  cAppDir=/etc/init.d
+  source $Scripter
+fi
+
+if [ -r $cFileDef ] ; then
+  source $cFileDef
+else
+  echo "Warn: File not exists $cFileDef"
+fi
+
+type -t CallBackUserLoop >/dev/null
+if [ $? -ne 0 ]; then
+  echo "Error: No function CallBackUserLoop()"
+  exit 0
+fi
+
+echo "cLogFile: $cFileLog"
+source /lib/lsb/init-functions
+
+
+# --- Common
+Log()
+{
+  local aMsg="$1"; 
+
+  local Msg="$(date '+%Y-%m-%d-%a %H:%M:%S'), $(id -u -n), $NAME, $aMsg"
+  echo "$Msg"
+  echo "------ cFileLog $cFileLog"
+  echo "$Msg" >> $cFileLog
+
+  log_daemon_msg "$Msg"
+  #log_end_msg $?
+}
+
+
+Debug()
+{
+  local aMsg="$1";
+
+  if [ $cDebug = 1 ]; then
+    Log "$aMsg"
+  fi
+}
+
+
+SendMail()
+{
+  local aTo="$1"; local aSubj="$2"; local aBody="$3";
+
+  for Item in $(echo $aTo | tr ',' '\n'); do
+    echo -e "$aBody" | mail -s "$aSubj" $Item
+  done
+}
+
+
+GetInfo()
+{
+  GetInfoRes="
+Service:    $DESCR
+Date:       $(date '+%Y-%m-%d %H:%M:%S')
+Host:       $(hostname)
+Int IP:     $(hostname -I | awk '{print $1}')
+Ext IP:     $(wget -qO - ipinfo.io/ip)
+CPU:        $(cat /proc/cpuinfo | grep 'model name' | tail -n 1 | cut -d ':' -f 2)
+RAM Mb:     $(grep MemTotal /proc/meminfo | awk '{print int($2/1000)}')
+Root disk:  $(df -lh / | tail -n 1 | sed "s/%/%%/")
+Uptime:     $(uptime)
+Installed:  $(ls -lact --full-time /etc | awk '{print $6}' | sort | head -2)
+User:       $(id -u -n)
+Last login: $(last | tac | tail -n 1)
+"
+}
+
+
+Exec()
+{
+  local aName=$1; local aState=$2; local aExec="$3"; local aComment="$4"; 
+  Debug "$FUNCNAME($*)"
+
+  if [ "$aState" == "$cERR" ]; then
+    Log "Exec Err: ($*)"
+    if [ "$aExec" ]; then
+      #$aExec
+      eval "$aExec"
+    fi
+  fi
+
+  local PrevState=${ArrEvent[$aName]}
+  if [ "$PrevState" != "$aState" ]; then
+    ArrEvent[$aName]="$aState"
+    if [ "$aState" == "$cERR" ] || [ "$PrevState" ]; then
+      Subj="Host:$(hostname)->$NAME->$aName->$aState"
+
+      GetInfo
+      Info="$GetInfoRes
+
+Monit: $aName
+State: $PrevState -> $aState
+Exec: $aExec
+Comment: $aComment
+"
+      Log "Exec eMail: $Subj"
+      SendMail "$cMailTo" "$Subj" "$Info"
+    fi
+  fi
+}
+
+
+Compare()
+{
+  local local aValue=$1; local aMax=$2;
+  Debug "$FUNCNAME($*)"
+
+  #if [ $(echo "$Value > $aMax" | bc) -ne 0 ]; then
+  if [[ "$aValue" > "$aMax" ]]; then
+    CompareRes=$cERR
+  else
+    CompareRes=$cOK
+  fi
+
+  #echo "Value:$aValue, aMax:$aMax, CompareRes:$CompareRes"
+}
+
+
+MainLoop()
+{
+  Debug "$FUNCNAME()"
+
+  Subj="Host:$(hostname)->$NAME->Starting"
+  GetInfo
+  SendMail "$cMailTo" "$Subj" "$GetInfoRes"
+
+  sleep $cDelay
+
+  declare -gA ArrEvent
+
+  local Cnt=0
+  while true; do
+    CallBackUserLoop $Cnt
+
+    Cnt=$((Cnt+1))
+    if [ $cMaxCnt -ne 0 ] && [ $Cnt -gt $cMaxCnt ]; then
+        Log "MaxCnt reached $cMaxCnt"
+        break
+    fi
+
+    sleep $cSleep
+  done
+
+  Debug "$FUNCNAME(). Exit"
+}
+
+
+# --- API begin
+mMount()
+{
+  local aName=$1; local aDev=$2; local aExec="$3";
+  Debug "$FUNCNAME($*)"
+
+  State=$cERR
+  if [ -e "$aDev" ]; then
+    Dir=$( mount | grep $aDev | awk '{print $3}')
+    [ "$Dir" ] && State=$cOK
+    Exec $aName $State "$aExec"
+  else
+    Log "$aName. Cant find device $aDev"
+  fi
+}
+
+
+mDiskFree()
+{
+  local aName=$1; local aMount=$2; local aMax="$3";
+  Debug "$FUNCNAME($*)"
+
+  if df $aMount > /dev/null 2>&1 ; then
+    Value=$(df --output=pcent $aMount | tail -n 1 | xargs)
+
+    # var contains percent. suppress error
+    ValuePad=$(printf %03d ${Value} 2> /dev/null)
+    MaxPad=$(printf %03d ${aMax} 2> /dev/null)
+
+    Compare $ValuePad $MaxPad
+    Exec $aName $CompareRes "" "$Value vs $aMax"
+  else
+    Log "$aName. Cant find mount point $aMount"
+  fi
+}
+
+
+mFileAccess()
+{
+  local aName=$1; local aFile=$2; local aMinutes=$3; local aExec="$4";
+  Debug "$FUNCNAME($*)"
+
+  Res=$(find $aFile -mmin +${aMinutes} 2> /dev/null)
+  if [ "$Res" ] ; then
+    State=$cERR
+  else
+    State=$cOK
+  fi
+
+  Exec $aName $State "$aExec" "$aMinutes"
+}
+
+
+mCpuLoad()
+{
+  # aIdx = 1,2,3 (last load 1min, 5 min, 15 min)
+  local aName=$1; local aIdx=$2; local aMax="$3";
+  Debug "$FUNCNAME($*)"
+
+  Value=$(cut -d ' ' -f $aIdx /proc/loadavg)
+  Compare $Value $aMax
+  Exec $aName $CompareRes "" "$Value vs $aMax"
+}
+
+
+mSwapLoad()
+{
+  local aName=$1; local aMax="$2";
+  Debug "$FUNCNAME($*)"
+
+  Value=`free | grep -i swap | awk '{ printf("%.2f", $3/$2*100) }'`
+  Compare $Value $aMax
+  Exec $aName $CompareRes "" "$Value vs $aMax"
+}
+
+
+mMemLoad()
+{
+  local aName=$1; local aMax="$2";
+  Debug "$FUNCNAME($*)"
+
+  Value=`free | grep -i mem | awk '{ printf("%.2f", $3/$2*100) }'`
+  Compare $Value $aMax
+  Exec $aName $CompareRes "" "$Value vs $aMax"
+}
+
+
+mProcess()
+{
+  local aName=$1; local aPidFile=$2; local aExec="$3";
+  Debug "$FUNCNAME($*)"
+
+  State=$cERR
+
+  Pid=$(cat $aPidFile 2> /dev/null)
+  if [ "$Pid" ]; then
+    ps -p $Pid > /dev/null && State=$cOK
+  fi
+
+  Exec $aName $State "$aExec"
+}
+
+
+mDirPerm()
+{
+  local aName=$1; local aDir="$2"; local aOwner="$3"; local aDirM=${4:-755}; local aFileM=${5:-644};
+  Debug "$FUNCNAME($*)"
+
+  find "$aDir" -print0 | xargs -0 chown "$aOwner"
+  find "$aDir" -type f -print0 | xargs -0 chmod $aFileM
+  find "$aDir" -type f -name "*.sh" -print0 | xargs -0 chmod +x
+  find "$aDir" -type d -print0 | xargs -0 chmod $aDirM
+}
+
+
+#--- API end
+
+
+ServStart()
+{
+  if [ $cEnabled = 1 ]; then
+    Log "ServStart(), $DESCR ..."
+
+    #export -f MainLoop
+    #su $USER -c "bash -c MainLoop"
+
+    MainLoop &
+    PID=$!
+    echo $PID > $cFilePid
+    Log "Info: PID=$PID, cDelay=$cDelay, cSleep=$cSleep, cDebug=$cDebug, cMaxCnt=$cMaxCnt, cMailTo=$cMailTo"
+
+    log_end_msg $?
+  else
+    Log "Disabled in $cFileDef"
+  fi
+}
+
+
+ServStop()
+{
+  Log "ServStop()"
+
+  #PID=$(cat $cFilePid)
+  #kill $PID >/dev/null 2>&1
+
+  start-stop-daemon --stop --pidfile "$cFilePid" --verbose --oknodo
+  log_end_msg $?
+}
+
+
+case "$1" in
+  start)
+    ServStart
+    ;;
+
+  stop)
+    ServStop
+    ;;
+
+  restart)
+    $0 stop
+    sleep 1
+    $0 start
+    ;;
+
+  status)
+    log_action_msg "Status $NAME"
+    status_of_proc -p $cFilePid
+    ;;
+
+  *)
+    echo $DESCR
+    log_action_msg  "Usage: /etc/init.d/$NAME {start|stop|restart|status}"
+    exit 1
+    ;;
+esac
+
+exit 0

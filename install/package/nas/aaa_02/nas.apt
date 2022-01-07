@@ -1,0 +1,70 @@
+#---
+# Raspberry NAS
+# VladVons@gmail.com
+#
+# https://www.pestmeester.nl
+#---
+
+
+##--- File share
+#nfs-kernel-server
+#tftpd-hpa
+rsync
+ntfs-3g
+#transmission-daemon
+#minidlna
+#apt-cacher-ng
+
+
+##--- HDD
+#smartmontools
+#parted
+#iscsitarget
+
+
+##--- Archiver
+#zip
+#unzip
+##p7zip-full
+
+
+##--- Service
+fail2ban
+#gpm
+
+
+##--- Misc
+#mc
+lynx
+wput
+wget
+bittornado
+screen
+locate
+#lsof
+#sqlite3
+lame
+ntpdate
+
+#--- Post/Pre Install ---
+
+##--- File share
+#samba
+#samba-vfs-modules
+#cifs-utils
+##winbind
+
+#pure-ftpd
+
+
+#--- Mail
+#ssmtp
+#postfix
+
+##--- Http
+#apache2
+#libapache2-mod-php
+lighttpd
+
+##--- Service
+#monit

@@ -1,0 +1,22 @@
+#---
+# Web server
+# VladVons@gmail.com
+#---
+
+
+
+##--- File
+rsync
+
+##--- Misc
+lynx
+wput
+wget
+screen
+lsof
+
+dnsutils
+net-tools
+cifs-utils
+
+mariadb-server

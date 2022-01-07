@@ -1,0 +1,11 @@
+##--- Http
+apache2
+libapache2-mod-php
+
+awstats
+
+#- dict for rand passwords $(shuf -n4 /usr/share/dict/words | tr -d '\n')
+wamerican
+
+#- another password generator
+gpw

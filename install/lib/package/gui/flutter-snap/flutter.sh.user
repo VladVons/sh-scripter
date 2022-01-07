@@ -1,0 +1,12 @@
+#!/bin/bash
+
+echo "--- $cUser, $HOME"
+
+flutter sdk-path
+flutter precache
+
+yes "y" | flutter doctor --android-licenses
+flutter doctor
+flutter emulators --create
+flutter update-packages
+flutter doctor -v

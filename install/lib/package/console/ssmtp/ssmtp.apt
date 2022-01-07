@@ -1,0 +1,8 @@
+ssmtp
+
+mailutils
+#openssl
+#libssl-dev
+#libsasl2-modules
+#ssl-cert
+#mpack

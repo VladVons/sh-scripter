@@ -1,0 +1,13 @@
+
+# --- temporary to memory
+#tmpfs                  /var/tmp       tmpfs   nodev,nosuid,size=50M 0 0 
+
+#--- local storage
+#/dev/sda1              /mnt/hdd/data1  ntfs   defaults,uid=1000,rw  0  0
+#/dev/sda1              /mnt/hdd/data1  ext4   defaults,auto,nofail  0  1
+
+#--- local directory
+#/mnt/hdd/data1/home  /home    none    bind
+
+#--- Windows Samba sharing
+#//192.168.2.102/temp   /mnt/smb/temp   cifs   username=guest,password=guest,auto,nofail,iocharset=utf8,uid=1000,rw,vers=1.0,user  0  0

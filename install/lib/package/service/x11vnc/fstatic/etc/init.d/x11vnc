@@ -1,0 +1,54 @@
+#!/bin/sh -e
+
+### BEGIN INIT INFO
+# Provides:          x11vnc
+# Default-Start:     5
+# Default-Stop:      0 6
+# Short-Description: autostart x11vnc server
+# Description:       VladVons@gmail.com. autostart x11vnc server
+### END INIT INFO
+
+PATH=$PATH:/bin:/usr/bin:/sbin
+
+ENABLED=1
+PORT=5910
+USER=root
+#
+NAME="x11vnc"
+DAEMON="/usr/bin/$NAME"
+OPTIONS="-bg -ncache -nap -many -repeat -clear_keys -auth guess -rfbport $PORT -no6 -noipv6 -xkb -display :0"
+PIDFILE="/var/run/$NAME.pid"
+#
+[ -e /etc/default/$NAME ] && . /etc/default/$NAME
+[ "$ENABLED" = "1" ] || exit 0
+
+. /lib/lsb/init-functions
+
+case "$1" in
+    start)
+        log_daemon_msg "Start $Name"
+        $DAEMON ${OPTIONS}
+        #start-stop-daemon --start --pidfile $PIDFILE --make-pidfile --chuid $USER --exec $DAEMON -- $OPTIONS
+        log_end_msg $?
+        ;;
+
+    stop)
+        log_daemon_msg "Stop $Name"
+        #start-stop-daemon --stop --oknodo --pidfile $PIDFILE
+        killall /usr/bin/x11vnc
+        log_end_msg $?
+        ;;
+
+    stop|restart)
+        $0 stop
+        sleep 1
+        $0 start
+        ;;
+
+    *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+        ;;
+esac
+
+exit 0 

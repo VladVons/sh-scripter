@@ -1,0 +1,65 @@
+#---.
+# LXC container
+# VladVons@gmail.com
+#---
+
+ca-certificates
+
+#--- file manager
+mc
+
+
+#--- statictic
+htop
+iftop
+
+
+#--- services
+monit
+pure-ftpd
+gpm
+
+#--- network
+fail2ban
+
+
+#--- internet
+dnsutils
+lynx
+rsync
+whois
+
+
+#--- archiver
+zip
+unzip
+
+
+#--- misc
+rsync
+
+
+#--- freeswitch
+freeswitch-sysvinit
+freeswitch-mod-event-socket
+freeswitch-meta-codecs 
+freeswitch-mod-sofia
+freeswitch-mod-console 
+freeswitch-mod-logfile
+freeswitch-mod-db 
+freeswitch-mod-cdr-sqlite
+freeswitch-mod-lua
+freeswitch-mod-python
+freeswitch-mod-sndfile
+freeswitch-mod-sofia
+freeswitch-mod-xml-rpc
+freeswitch-mod-loopback
+freeswitch-mod-commands
+freeswitch-mod-dptools
+freeswitch-mod-expr
+freeswitch-mod-hash
+freeswitch-mod-dialplan-xml
+freeswitch-mod-native-file
+freeswitch-conf-vanilla
+freeswitch-mod-say-ru 
+freeswitch-lang-ru

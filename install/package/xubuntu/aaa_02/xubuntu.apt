@@ -1,0 +1,70 @@
+### archiver
+p7zip-full
+zip
+unzip
+
+### audio
+audacious
+audio-recorder
+
+### browser
+chromium-browser
+chromium-codecs-ffmpeg
+chromium-codecs-ffmpeg-extra
+#firefox-locale-uk
+#lynx
+#icedtea-plugin
+
+### network
+network-manager-openvpn
+#network-manager-openvpn-gnome
+#nmap
+traceroute
+#tcpdump
+
+### remote desktop
+freerdp2-x11
+#xrdp
+#rdesktop
+gvncviewer
+
+### file system
+gparted
+ntfs-3g
+cifs-utils
+
+### xfce
+xfce4-goodies
+xfce4-power-manager-plugins
+xfce4-clipman-plugin
+xfwm4-themes
+
+cheese
+#gnome-disk-utility
+#gtk2-engines-xfce
+#gtk3-engines-xfce
+hardinfo
+hddtemp
+htop
+#inkscape
+jpegoptim
+#kazam
+#language-pack-gnome-uk
+#language-pack-uk
+#libreoffice-impress
+#libreoffice-l10n-uk
+mc
+#printer-driver-cups-pdf
+#qemu-guest-agent
+#shiki-colors-xfwm-theme 
+#smartmontools
+snapd 
+#snapd-xdg-open
+speedcrunch
+ssh
+#telegram-desktop
+#thunderbird-locale-uk
+wget
+whois
+winff
+wput

@@ -1,0 +1,54 @@
+#--- Tools
+mc
+rsync
+i2c-tools
+htop
+zip
+unzip
+
+#--- DB
+#python-mysqldb
+#sqlite
+
+#--- Mail
+ssmtp
+mailutils
+
+#--- service
+monit
+
+#--- Net
+avahi-daemon
+openvpn
+cifs-utils
+
+#--- Development
+git-core
+#cmake
+#pkg-config
+#build-essential
+
+#--- python
+python-pip
+#python-dev
+#python-setuptools
+#python-smbus
+#virtualenvwrapper
+
+#--- OpenCV
+#python-opencv
+#libjpeg-dev
+#libtiff5-dev
+#libjasper-dev
+#libpng12-dev
+#libjpeg9-dev
+#libavcodec-dev
+#libavformat-dev
+#libswscale-dev
+#libv4l-dev
+#libxvidcore-dev
+#libx264-dev
+#libgtk2.0-dev
+#libatlas-base-dev
+#gfortran
+#python-numpy

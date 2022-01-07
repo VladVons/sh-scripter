@@ -1,0 +1,13 @@
+#EXTM3U
+
+##EXTINF:-1,Hit-FM
+#https://www.hitfm.ua/HitFM.m3u
+
+#EXTINF:-1,Retro-FM
+http://cast.radiogroup.com.ua:8000/retro
+
+##EXTINF:-1,Retro-FM-Romantic
+#http://cast2.retro.ua/retro_romantic
+
+##EXTINF:-1,Радiо Люкс
+#http://icecast.luxnet.ua/lux

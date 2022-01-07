@@ -1,0 +1,29 @@
+#--- file manager
+mc
+
+#--- info
+htop
+iftop
+
+#--- internet
+dnsutils
+net-tools
+lynx
+rsync
+wget
+
+#-- mail
+postfix
+libsasl2-modules
+
+#--- misc
+locate
+screen
+stress
+
+#--- archiver
+zip
+unzip
+p7zip-full
+zstd
+unzstd

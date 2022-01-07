@@ -1,0 +1,23 @@
+i2c-tools
+git-core
+rsync
+mailutils
+bc
+lsof
+sqlite
+ntpdate
+locate
+
+# python minimal installer
+#libpython2.7
+python3-pip
+#python-dev
+
+# some package for app
+python3-prctl
+python3-smbus
+python3-mysqldb
+python3-crypto
+python3-ephem
+python3-psutil
+

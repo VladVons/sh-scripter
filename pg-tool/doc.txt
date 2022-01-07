@@ -1,0 +1,13 @@
+--- Backup
+apt install wput zstd
+
+
+--- Restore
+apt install zstd
+
+
+--- Scheduler
+crontab -u root -e
+15 23 *   *   *     (cd /usr/lib/scripter/pg-tool; ./pg-ToolDbDumpToFtp.sh)
+25 23 *   *   5     (cd /usr/lib/scripter/pg-tool; ./pg-ToolDbReindex.sh)
+40 23 *   *   5     (cd /usr/lib/scripter/pg-tool; ./pg-ToolFsCheck.sh)

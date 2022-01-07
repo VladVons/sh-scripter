@@ -1,0 +1,9 @@
+/bin/sh
+/bin/bash
+/bin/rbash
+/bin/dash
+/usr/bin/screen
+
+# --- pure-ftp auth
+/bin/false
+/usr/sbin/nologin

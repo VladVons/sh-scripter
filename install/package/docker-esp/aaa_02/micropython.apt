@@ -1,0 +1,10 @@
+### for compiling micropython firmware
+python2.7
+python3
+python3-pip
+
+make
+gcc
+libtool
+libffi-dev
+pkg-config

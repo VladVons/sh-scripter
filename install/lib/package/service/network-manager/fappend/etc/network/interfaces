@@ -1,0 +1,15 @@
+
+#allow-hotplug enp1s0
+##auto enp1s0
+#iface enp1s0 inet static
+#    address 192.168.0.21
+#    netmask 255.255.255.0
+#  gateway 192.168.2.1
+#  dns-nameservers 8.8.8.8
+#  hwaddress ether a0:f3:c1:01:3f:68
+
+
+#auto wlan0
+#iface wlan0 inet dhcp
+#    wpa-ssid R3-0976646510
+#    wpa-psk 197119822007

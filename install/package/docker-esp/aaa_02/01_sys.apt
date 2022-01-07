@@ -1,0 +1,11 @@
+mc
+sudo
+htop
+wget
+git
+zip
+unzip
+picocom
+strace
+apt-utils
+rsync

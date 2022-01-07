@@ -1,0 +1,77 @@
+#!/bin/bash
+
+###cUser=$USER
+
+ANDROID_SDK_ROOT="/home/$cUser/android"
+
+#https://developer.android.com/studio/releases/build-tools
+ANDROID_BUILD_TOOLS_VERSION="29.0.3"
+ANDROID_VERSION="29"
+
+#https://developer.android.com/studio?hl=en-419#downloads
+ANDROID_TOOLS_URL="https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip"
+
+
+FLUTTER_HOME="/home/$cUser/flutter"
+FLUTTER_CHANNEL="stable"
+
+# https://docs.flutter.dev/development/tools/sdk/release-notes
+FLUTTER_VERSION="2.8.1"
+FLUTTER_URL="https://storage.googleapis.com/flutter_infra_release/releases/$FLUTTER_CHANNEL/linux/flutter_linux_$FLUTTER_VERSION-$FLUTTER_CHANNEL.tar.xz"
+
+NewPath="$ANDROID_SDK_ROOT/cmdline-tools/tools/bin:$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/platforms:$FLUTTER_HOME/bin"
+PATH="$NewPath:$PATH"
+
+
+AndroidSDK()
+{
+    mkdir -p $ANDROID_SDK_ROOT
+    mkdir -p /home/$cUser/.android
+    touch /home/$cUser/.android/repositories.cfg
+
+    File="android_tools.zip"
+    curl -o $File $ANDROID_TOOLS_URL
+    unzip -qq -d "$ANDROID_SDK_ROOT" $File
+    rm $File
+
+    mkdir -p $ANDROID_SDK_ROOT/cmdline-tools/tools
+    mv $ANDROID_SDK_ROOT/cmdline-tools/bin $ANDROID_SDK_ROOT/cmdline-tools/tools
+    mv $ANDROID_SDK_ROOT/cmdline-tools/lib $ANDROID_SDK_ROOT/cmdline-tools/tools
+
+    yes "y" | sdkmanager "build-tools;$ANDROID_BUILD_TOOLS_VERSION"
+    yes "y" | sdkmanager "platforms;android-$ANDROID_VERSION"
+    yes "y" | sdkmanager "platform-tools"
+    yes "y" | sdkmanager "emulator"
+    yes "y" | sdkmanager "system-images;android-$ANDROID_VERSION;google_apis_playstore;x86_64"
+
+    #ln -s $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager $ANDROID_SDK_ROOT/tools/bin/sdkmanager
+}
+
+Flutter()
+{
+  File="flutter.tar.xz"
+  curl -o $File $FLUTTER_URL
+  mkdir -p $FLUTTER_HOME
+  tar xf $File -C /home/$cUser
+  rm $File
+
+  flutter config --no-analytics
+  flutter config --android-sdk /home/$cUser/android
+  flutter precache
+  yes "y" | flutter doctor --android-licenses 
+  flutter doctor
+  flutter emulators --create
+  flutter update-packages
+  flutter doctor -v
+}
+
+Env()
+{
+    echo ". ~/.bashrc-flutter" >> /home/$cUser/.bashrc
+    echo "PATH=$NewPath:\$PATH" > /home/$cUser/.bashrc-flutter
+}
+
+
+#AndroidSDK
+#Flutter
+#Env

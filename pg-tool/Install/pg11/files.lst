@@ -1,0 +1,7 @@
+deb10-pg11-1c-orig.sh
+files.lst
+libicu55_55.1-7ubuntu0.5_amd64.deb
+libicu60_60.2-3ubuntu3.2_amd64.deb
+libpq5_11.13-4.1C_amd64.deb
+postgresql-11_11.13-4.1C_amd64.deb
+postgresql-client-11_11.13-4.1C_amd64.deb

@@ -1,0 +1,7 @@
+[Midnight-Commander]
+auto_save_setup=false
+use_internal_view=true
+use_internal_edit=true
+
+[Panels]
+navigate_with_arrows=true

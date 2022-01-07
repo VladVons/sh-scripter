@@ -1,0 +1,24 @@
+### /usr/lib/scripter/pg-tool/pg-Tool.conf.sample
+
+### Postgress
+cPgService="postgresql"
+cPgUser="postgres"
+
+### File system check
+cDev="/dev/mapper/pve-vm--115--disk--1"
+cRoot="/mnt/hdd/data1"
+
+### Log
+cDirLog="/var/log/pg-tool"
+cFileLog="$cDirLog/$(basename $0).log"
+
+# Local backup
+cDirBackup="/mnt/share/backup/postgres"
+
+### FTP backup
+cFtpHost="192.168.7.22"
+cFtpUser="vladvons"
+cFtpPassw="19710819"
+
+### default DB
+cDbDefault=test2

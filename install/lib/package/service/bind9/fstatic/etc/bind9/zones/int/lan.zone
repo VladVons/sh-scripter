@@ -1,0 +1,25 @@
+;--- VladVons
+
+$TTL    86400
+@       IN      SOA     ns.lan.te vladvons.gmail.com. (
+        2018020512
+        10800
+        900
+        604800
+        6400
+)
+
+        IN      NS      ns.lan.te.
+        IN      A       192.168.2.101
+ns      IN      A       192.168.2.101
+;@       IN      MX      10 ASPMX.L.GOOGLE.COM.
+
+;--- internet alias
+test            IN      CNAME   @
+download        IN      CNAME   @
+;*               IN      CNAME   @
+
+vm              IN      A       192.168.2.100
+router          IN      A       192.168.2.101
+fs              IN      A       192.168.2.102
+1c              IN      A       192.168.2.110

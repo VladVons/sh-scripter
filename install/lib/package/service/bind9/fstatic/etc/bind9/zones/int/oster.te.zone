@@ -1,0 +1,44 @@
+;--- VladVons
+
+$TTL	86400
+@			IN	SOA	ns.oster.te. vladvons.mail.ru.  (
+				2015020508
+    				10800
+		    		900
+				604800
+				86400
+				)
+			IN	NS	ns.oster.te.
+			IN	A	192.168.2.2
+ns			IN	A	192.168.2.2
+@			IN      MX      10 ASPMX.L.GOOGLE.COM.
+
+;---
+; internet alias
+test      	  	IN      CNAME   @
+download      	  	IN      CNAME   @
+download2      	  	IN      CNAME   @
+;*			IN      CNAME   @
+
+; devices
+tr24			IN	A	192.168.2.2
+wifi			IN	A	192.168.2.4
+voip-tel		IN	A	192.168.2.6
+voip-gsm		IN	A	192.168.2.8
+camera1			IN	A	192.168.2.9
+
+; pc
+media    		IN	A	192.168.2.111
+asus1b 		     	IN      A       192.168.2.115
+asus1a 		     	IN      A       192.168.2.112
+htc1			IN      A       192.168.2.113
+htc2    		IN	A	192.168.2.114
+
+; virtual machines
+vm-winxp  		IN	A	192.168.2.200
+vm-win7  		IN	A	192.168.2.201
+vm-win8  		IN	A	192.168.2.202
+vm-win2008  		IN	A	192.168.2.203
+vm-win7b  		IN	A	192.168.2.204
+vm-linuxlite 		IN	A	192.168.2.210
+vm-ubuntu-64		IN	A	192.168.2.211

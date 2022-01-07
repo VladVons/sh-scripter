@@ -1,0 +1,3 @@
+vboxmanage list vms
+vboxmanage export Win7x64 -o Win7x64.img.ova
+vboxmanage import Win7x64.img.ova

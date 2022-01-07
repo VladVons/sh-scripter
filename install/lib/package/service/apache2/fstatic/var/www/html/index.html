@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="./style.css" type="text/css">
+        <title>NAS Oster</title>
+        <script>
+            function GetHostName() {
+                var x = location.hostname;
+                document.getElementById("demo").innerHTML= x;
+            }
+        </script>
+    </head>
+    <body>
+        <div id="content">
+            <div class="login login-screen" style="width:800px">
+                <table>
+                     <tbody>
+                        <tr>
+                            <th>No</th>
+                            <th>Сервіс</th>
+                        </tr>
+                        <tr bgcolor="#B0E0E6">
+                            <td>1</td>
+                            <td><a href="public">Публічна папка</a></td>
+                        </tr>
+                        <tr bgcolor="#B0E0E6">
+                            <td>1</td>
+                            <td><a href="home">Домашня папка</a></td>
+                        </tr>
+<!--
+                        <tr bgcolor="#B0E0E6">
+                            <td>2</td>
+                            <td><a href="extpl">eXtplorer</a></td>
+                        </tr>
+                        <tr bgcolor="#B0E0E6">
+                            <td>3</td>
+                            <td><a href="/" onclick="javascript:event.target.port=10000">WebMin</a></td>
+                        </tr>
+-->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="footer" class="app-footer">
+            <a href="http://oster.com.ua/service-sysadmin">Остер</a>
+        </div>
+    </body>
+</html>

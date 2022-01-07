@@ -1,0 +1,2 @@
+# let another tasks to be finish before reboot
+/sbin/shutdown -r "+15" "crone weekly reboot"

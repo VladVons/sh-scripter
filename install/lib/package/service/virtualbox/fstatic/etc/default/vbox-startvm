@@ -1,0 +1,4 @@
+VMUSER=linux
+#VM="WinXP_32_1"
+VM="WinXp_32_2"
+

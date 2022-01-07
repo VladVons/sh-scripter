@@ -1,0 +1,17 @@
+; reverse zone
+
+$TTL 30
+@               IN      SOA     ns.lan.te. vladvons.gmail.com. (
+         201505015      ; Serial
+                1d      ; Refresh
+                1h      ; Retry
+                1w      ; Expire
+                2h      ; Negative Cache TTL
+)
+
+@               IN      NS      ns.lan.te.
+
+100             IN      PTR     vm.lan.te.
+101             IN      PTR     ns.lan.te.
+102             IN      PTR     fs.lan.te.
+110             IN      PTR     1c.lan.te.

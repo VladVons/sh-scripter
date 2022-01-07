@@ -1,0 +1,1 @@
+/etc/collectd/collectd-smartmon.sh

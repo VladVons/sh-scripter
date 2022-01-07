@@ -1,0 +1,4 @@
+--- iso to usb ---
+
+lsblk
+ddrescue -vfD ./image.iso /dev/sdX

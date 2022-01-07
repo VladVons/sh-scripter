@@ -1,0 +1,19 @@
+#---
+# Minimum X with browser
+# VladVons@gmail.com
+#---
+
+
+# xorg
+xserver-xorg-core
+xserver-xorg-input-all
+xserver-xorg-video-all
+xserver-xorg-legacy
+xinit
+
+# window manager
+icewm
+lightdm
+
+# browser
+netsurf-gtk

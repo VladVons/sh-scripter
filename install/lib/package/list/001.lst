@@ -1,0 +1,4 @@
+# available scripts can also be added from $cDirRoot/package/common/available or /full/path/to/script 
+# each macros per line
+
+macros/010_sys

@@ -1,0 +1,19 @@
+### iso to usb
+gddrescue
+usb-creator-gtk
+
+### text editor
+geany
+bless
+
+meld
+evince
+git
+sqlite3
+stress
+
+### windows emulator
+wine
+wine32
+
+virtualbox

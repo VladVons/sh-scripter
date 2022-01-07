@@ -1,0 +1,39 @@
+<file system> <mount point>   <type>  <options>       <dump>  <pass>
+
+#--- swap file
+/swapfile   none    swap    sw    0 0
+/dev/sda2   none    swap    defaults   0 0
+
+#--- swap partitin
+UUID=188624f0-e2c3-4879-b8a6-7b4ce2c7ddf8 none            swap    sw              0       0
+
+#--- FS ext4
+/dev/sda4       /mnt/hdd/data1  ext4    defaults        0 1
+
+#--- FS NTFS
+/dev/sdc1      /mnt/usb2       ntfs-3g         defaults,noauto,locale=en_US.utf8   0    0
+
+/dev/sda5      /mnt/ntfs       ntfs            defaults,uid=1000,rw  0  0
+
+#--- FS UFS
+/dev/sdb4      /mnt/ufs        ufs             noauto,ro,ufstype=ufs2,nodev,nosuid 0 0
+
+#--- CDROM
+/dev/sr0        /mnt/cdrom      udf,iso9660,user,noauto 0 0
+
+#--- local directory
+/mnt/hdd/data1/home  /home    none    bind
+
+#--- Windows Samba sharing
+//192.168.2.1/temp      /mnt/smb/tr24   cifs    username=guest,password=guest,noauto,iocharset=utf8,sec=ntlm,uid=1000,rw,vers=1.0  0  0
+//192.168.2.1/temp      /mnt/smb/tr24   cifs    username=guest,password=guest,noauto,iocharset=utf8,sec=ntlm,uid=1000,rw,vers=1.0,user  0  0
+//127.0.0.1/s777        /mnt/smb/s777   cifs    username=guest,password=guest,rw,dir_mode=0777,file_mode=0666,uid=65534,gid=65534,noauto,x-systemd.automount 0  0
+
+
+
+#--- RAM temp
+tmpfs /tmp tmpfs defaults,noatime,nosuid,nodev,noexec,mode=1777,size=512M 0 0
+
+# on clien side. Put login and password into /etc/davfs2/secrets
+http://oster.com.ua/owncloud/remote.php/webdav /mnt/owncloud   davfs   user,noauto,rw  0 0
+
