@@ -17,19 +17,9 @@ Log()
 
 Clean()
 {
-  echo "delete objects"
-  find . -name '*.pyc' -exec rm -v -f -R {} \;
-  find . -name '*.log' -exec rm -v -f -R {} \;
-  find . -name '__pycache__' -exec rm -v -f -R {} \;
-
   echo
-  echo "Statistics *.py"
-  #find . -name '*.py' -ls | awk '{total += $7} END {print total}'
-  find . -name '*.py' | xargs wc
-
-  echo
-  echo "Statistics *.json"
-  find . -name '*.json' | xargs wc
+  echo "Statistics *.sh"
+  find . -name '*.sh' | xargs wc
 }
 
 GitAuth()
