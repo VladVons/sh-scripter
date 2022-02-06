@@ -1,0 +1,46 @@
+#!/bin/sh
+
+## BEGIN INIT INFO
+# Provides:          vwol
+# Required-Start:    $network $syslog
+# Required-Stop:     $network $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# X-Interactive:     true
+# Author:            VladVons@gmail.com
+# Short-Description: vmonit
+# Description:       vmonit daemon
+### END INIT INFO
+
+# update-rc.d vwol defaults
+# systemctl enable vwol
+# sudo etherwake -i wlp6s0 1c:87:2c:46:e1:15
+
+
+IF=eno1
+#
+NAME="vwol"
+DESCR="$NAME. Wake On Lan autostart"
+cFileDef="/etc/default/$NAME"
+
+
+[ -r $cFileDef ] && source $cFileDef
+. /lib/lsb/init-functions
+
+#ip link | awk '{print $2}' | xargs -n 2 | grep $IF
+# ip addr show $IF
+Info="$DESCR; IF: $IF; MAC: $(cat /sys/class/net/$IF/address)"
+
+case "$1" in
+  start)
+    log_action_begin_msg "$Info"
+    /usr/sbin/ethtool -s $IF wol g
+    log_action_end_msg "$?"
+    ;;
+  *)
+    echo "$Info" >&2
+    echo "Usage: $NAME start" >&2
+    exit 1
+    ;;
+esac
+

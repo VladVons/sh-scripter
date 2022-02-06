@@ -12,6 +12,7 @@ PostInstall()
     chmod -R 777 $Dir/temp
 
     # register service
-    #update-rc.d samba defaults
-    #update-rc.d samba enable
+    Name="samba"
+    #update-rc.d $Name defaults
+    #systemctl enable $Name
 }

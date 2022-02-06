@@ -1,0 +1,25 @@
+### BlueTooth terminal ###
+
+### get inner device info 
+hciconfig
+
+### scan outer devices 
+hcitool scan
+
+### pair device
+bluez-simple-agent hci0 98:D3:31:30:1A:BA
+
+### disconnect device 
+bluez-simple-agent hci0 98:D3:31:30:1A:BA remove
+
+-------
+
+/etc/bluetooth/rfcomm.conf
+rfcomm connect 0
+ls /dev/rfcomm0
+
+# write to device
+echo 'my message' > /dev/rfcomm0
+
+# read from device
+tail -f /dev/rfcomm0

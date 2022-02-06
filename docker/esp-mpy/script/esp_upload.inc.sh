@@ -25,6 +25,7 @@ source ./common.conf
 
 _esp_install()
 {
+  sudo apt install picocom
   sudo pip3 install esptool adafruit-ampy
 
   # add current user preveleges
@@ -57,6 +58,40 @@ _esp_file_transfare()
   eval "$Cmd"
 }
 
+_files_db()
+{
+  find $cSrc -type f -printf '%T@ %p\n' | grep -v ".pyc" | sort -r
+}
+
+_esp_file_transfare_Db()
+{
+  touch $cUploadedDB
+  date >> $cUploadedDB
+
+  Cnt=0
+  _files_db |\
+  while read Item; do
+    if [ $(grep -c "$Item" $cUploadedDB) -ne 0 ]; then
+      continue
+    fi
+    ((Cnt++))
+
+    File=$(echo $Item | awk '{print $2}')
+    Size=$(du -b $File | awk '{print $1}')
+    SrcRoot=${Item#*$cSrc/}
+    printf "%02d %4d %s\n" $Cnt $Size $SrcRoot
+
+    ampy --port $cDev --baud $cSpeed1 put $File $SrcRoot
+    if [ $? == 0 ]; then
+      echo $Item >> $cUploadedDB
+    fi
+  done
+}
+
+create_db()
+{
+  _files_db > $cUploadedDB
+}
 
 # receive files from device
 espg()
@@ -80,6 +115,13 @@ espf()
   for File in $*; do
     _esp_file_transfare put $File
   done
+}
+
+##### send only updated files
+espfu()
+{
+  _esp_file_transfare_Db
+  _esp_terminal
 }
 
 ##### send files to device and enter terminal

@@ -7,5 +7,5 @@ PreInstall()
 PostInstall()
 {
   Dir=$(pwd)
-  runuser -l $USER -c "$Dir/AsUser.sh"
+  runuser -l $cUser -c "$Dir/AsUser.sh"
 }

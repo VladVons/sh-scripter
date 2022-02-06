@@ -82,7 +82,8 @@ Snap_FileListInstall()
     local aFile="$1";
     Log "$0->$FUNCNAME($*)"
 
-    for Item in $(sed '/^[[:blank:]]*#/d;s/#.*//' $aFile)/*/ 2>/dev/null); do
+    sed '/^[[:blank:]]*#/d;s/#.*//' $aFile 2>/dev/null |\
+    while read Item; do
       echo "Install snap: $Item ..."
       snap install $Item
     done

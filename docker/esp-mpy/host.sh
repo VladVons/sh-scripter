@@ -1,28 +1,39 @@
-source ../host.sh
+#source ../host.sh
 
 
 ImgRun()
 {
-  CheckArgCnt "$FUNCNAME($*)" $# 1
+  #CheckArgCnt "$FUNCNAME($*)" $# 1
   local aID=$1;
 
   DUser="esp"
+  #DUser="root"
   Dev="/dev/ttyUSB0"
 
-  if [ -f "$Dev" ]; then
+  if [ -r "$Dev" ]; then
     OptDev="--device=$Dev"
+    echo "$Dev ok"
   else
-    echo "device not found $Dev"
+    echo "$Dev err"
   fi
 
   docker run -it \
     $OptDev \
-    --volume /home/$USER/PyProjects/mpy-vRelay:/home/$DUser/host \
-    --user $DUser \
+    --volume /home/$USER/Projects/py/mpy-vRelay:/home/$DUser/host \
+    --user root \
     --workdir=/home/$DUser \
-    --name=esp-dev \
+    --name=$aID \
     $aID
 }
 
-ImgRun $1
 
+ImgName=$(basename $(pwd))
+CntName=$(docker container ls -a | grep esp-mpy | awk '{print $1}')
+if [ -z "$CntName" ]; then
+  ImgRun $ImgName
+else
+  echo "attach container $CntName"
+  cd $(dirname $0)
+  docker start $CntName
+  docker attach $CntName
+fi

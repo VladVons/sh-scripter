@@ -32,7 +32,12 @@ echo "--- Disk"
 cat /sys/class/block/*/device/model
 df -h -T | egrep "ext"
 
+echo
 echo "--- OS"
 cat /etc/os-release |\
   grep -E -i "^name=|version="
-#uptime -p
+ls -lact --full-time /etc | awk '{print $6}' | sort | head -2
+
+echo
+echo "--- Uptime"
+uptime -p

@@ -10,5 +10,5 @@ PreInstall()
 PostInstall()
 {
   systemctl status docker
-  usermod -aG docker $USER
+  usermod -aG docker $cUser
 }

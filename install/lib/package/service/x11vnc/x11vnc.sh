@@ -2,5 +2,8 @@
 
 PostInstall()
 {
-    update-rc.d x11vnc defaults
+    Name="x11vnc"
+
+    update-rc.d $Name defaults
+    systemctl enable $Name
 }

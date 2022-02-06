@@ -37,6 +37,9 @@ Pkg_Install()
 
   rsync -av ./fstatic/ /
 
+  Passw="root"
+  echo -e "$Passw\n$Passw" | passwd root
+
   AddUser $cUser
 
   PipInstall "esptool adafruit-ampy" $cUser

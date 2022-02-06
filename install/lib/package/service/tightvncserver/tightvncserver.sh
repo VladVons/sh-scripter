@@ -3,8 +3,9 @@
 PostInstall()
 {
     Dir=$(pwd)
-    runuser -l $USER -c "$Dir/AsUser.sh"
+    runuser -l $cUser -c "$Dir/AsUser.sh"
 
-    update-rc.d vvncserver defaults
-    update-rc.d vvncserver enable
+    Name="vvncserver"
+    update-rc.d $Name defaults
+    systemctl enable $Name
 }

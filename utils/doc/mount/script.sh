@@ -111,6 +111,12 @@ LVM()
   resize2fs /dev/vgdata/vol1_a
   #fsadm resize /dev/vgdata/vol1
 
+  # zfs resize 
+  apt install parted
+  zpool set autoexpand=on data1
+  parted /dev/vdb resizepart 1 100%
+  zpool online -e data1 /dev/vdb
+
   #--- lvm-thin  resize
   lvextend -L +10G /dev/mapper/vgdata-vol1_a
 

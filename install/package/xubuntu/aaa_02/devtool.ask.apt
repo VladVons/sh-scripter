@@ -2,6 +2,9 @@
 gddrescue
 usb-creator-gtk
 
+# undelete + test disk
+testdisk
+
 ### text editor
 geany
 bless
