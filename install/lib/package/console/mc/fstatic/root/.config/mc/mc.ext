@@ -1,0 +1,3 @@
+# python
+regex/i/\.(py)$
+    Open=python3 %f
