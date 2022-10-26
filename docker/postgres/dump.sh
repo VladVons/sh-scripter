@@ -20,5 +20,6 @@ Restore()
 
 
 #Dump 192.168.2.115 scraper1 postgres
-Restore localhost postgres postgres 192.168.2.115_scraper1.sql.dat
+#Restore localhost postgres postgres 192.168.2.115_scraper1.sql.dat
+
 
