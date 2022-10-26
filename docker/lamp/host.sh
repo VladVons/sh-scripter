@@ -12,4 +12,8 @@ ImgRun()
         -v ${PWD}/app:/app mattrayner/lamp:latest-2004
 }
 
-ImgRun
+#ImgRun
+
+#ID=14af978afb36
+#docker exec CONTAINER_ID  mysql -uroot -e "create database DATABASE_NAME"
+#docker exec $ID mysql -uroot -e "show databases;"
