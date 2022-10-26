@@ -113,6 +113,15 @@ GitToServ()
   GitSyncToServ "$aComment"
 }
 
+GitFromServF()
+# sync changes from server to disk force
+{
+  Log "$0->$FUNCNAME($*)"
+
+  git reset --hard origin/master
+  git fetch --all
+}
+
 Diff(){
   diff -r dir1 dir2 | sed '/Binary\ files\ /d' > diff.txt
 }
@@ -126,6 +135,7 @@ case $1 in
     GitCreate)          "$1"        "$2" "$3" ;;
     GitToServ|t)        GitToServ   "$2" "$3" ;;
     GitFromServ|f)      GitFromServ "$2" "$3" ;;
+    GitFromServF|ff)    GitFromServF "$2" "$3" ;;
     GitClone)           "$1"        "$2" "$3" ;;
 esac
 
