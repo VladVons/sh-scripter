@@ -10,6 +10,6 @@ PreInstall()
     echo deb http://download.webmin.com/download/repository sarge contrib  > $File
     echo deb http://webmin.mirror.somersettechsolutions.co.uk/repository sarge contrib  >> $File
 
-    wget -qO - http://www.webmin.com/jcameron-key.asc | sudo apt-key add -
+    wget -qO - http://www.webmin.com/jcameron-key.asc | apt-key add -
     #apt install webmin
 }

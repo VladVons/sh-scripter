@@ -3,7 +3,7 @@
 PreInstall()
 {
   apt install wget ca-certificates apt-transport-https gnupg
-  wget -q https://packages.sury.org/php/apt.gpg -O- | sudo apt-key add -
+  wget -q https://packages.sury.org/php/apt.gpg -O- | apt-key add -
 
   echo "deb https://packages.sury.org/php/ buster main" | tee /etc/apt/sources.list.d/php.list
   apt update

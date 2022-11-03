@@ -12,7 +12,7 @@ PostInstall()
     #htdigest /etc/apache2/webdav.password webdav guest
 
     a2enmod dav
-    sudo a2enmod dav_fs
+    a2enmod dav_fs
     a2enmod auth_digest
 
     apachectl configtest

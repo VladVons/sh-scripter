@@ -1,5 +1,6 @@
 ##--- Http
 apache2
+apache2-utils
 libapache2-mod-php
 
 awstats
