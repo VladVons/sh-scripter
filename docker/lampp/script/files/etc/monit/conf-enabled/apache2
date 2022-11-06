@@ -1,0 +1,4 @@
+check process apache with pidfile /run/apache2/apache2.pid
+   start program = "/etc/init.d/apache2 start"
+   stop program  = "/etc/init.d/apache2 stop"
+   if 4 restarts within 20 cycles then timeout
