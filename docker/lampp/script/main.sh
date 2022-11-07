@@ -1,4 +1,7 @@
 #!/bin/bash
+# Created: 2022.11.07
+# Author: Vladimir Vons <VladVons@gmail.com>
+
 
 source ./log.sh
 
@@ -28,6 +31,19 @@ install_pkg()
     ExecM "apt-get install --yes --no-install-recommends $aPkg"
 } 
 
+install_mariadb()
+{
+    Log "$0->$FUNCNAME($*)"
+    install_pkg "mariadb-server"
+
+    copy_file etc/mysql
+    copy_file etc/monit/conf-enabled/mariadb
+
+    service mariadb restart
+    sleep 1
+    mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '${USER_ADMIN_PASSW}' WITH GRANT OPTION;"
+}
+
 install_apache2()
 {
     Log "$0->$FUNCNAME($*)"
@@ -55,7 +71,7 @@ install_php()
     ExecM "apt update"
 
     for Ver in $aVer; do
-        install_pkg "php${Ver} libapache2-mod-php${Ver} php${Ver}-fpm"
+        install_pkg "php${Ver} libapache2-mod-php${Ver} php${Ver}-fpm php${Ver}-mysqli"
     done
 }
 
@@ -110,6 +126,11 @@ install_env()
     if [ "$PKG_PHP_VER" ]; then
         ColorEcho g "$PKG_PHP_VER"
         install_php "$PKG_PHP_VER"
+    fi
+
+    if [ "$PKG_MARIADB" ]; then
+        ColorEcho g "$PKG_MARIADB"
+        install_mariadb "$PKG_MARIADB"
     fi
 
     if [ "$PKG_PYTHON_VER" ]; then
@@ -169,8 +190,10 @@ build()
 {
     Log "$0->$FUNCNAME($*)"
 
+    echo "--- run as $(whoami)"
+
     ExecM "apt-get update"
-    #ExecM "apt-get --yes upgrade"
+    ExecM "apt-get --yes upgrade"
 
     install_pkg "sudo pwgen"
     install_pkg "ssh monit"
@@ -180,13 +203,9 @@ build()
 
     install_env
     clear_apt
-    user_add admin 19710819
-
-    #mkdir -p /app
-    #    rm -fr /var/www/html; \
-    #    ln -s /app /var/www/html;
-
-
+    user_add admin $USER_ADMIN_PASSW
+    
+    Log "Build done"
 }
 
 trap_ctrl_c()
@@ -200,17 +219,9 @@ trap_ctrl_c()
 
 run()
 {
-
     echo "--- run as $(whoami)"
-    echo "ROOT_PASSW: $ROOT_PASSW"
 
     services "" start
-
-    #mkdir -p /app/data
-    #ln -s /etc /app/data/etc 
-
-    #mount --bind /var/www /app/data/www
-    #mount --bind /etc /app/data/etc
 
     Dir=/var/www
     chown -R :staff $Dir
@@ -220,14 +231,12 @@ run()
     ExecM "lsof -i -P -n | grep LISTEN"
 
     trap trap_ctrl_c SIGINT SIGTERM
-    echo "Running ..."
+    echo "Running loop. Ctrl+C to break"
     while true; do
         sleep 1
     done
 }
 
-
-#copy_file etc/monit/conf-enabled/apache2
 
 case $1 in
     build|b)  build     "$2";;

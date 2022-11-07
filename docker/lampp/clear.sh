@@ -1,3 +1,6 @@
+#!/bin/bash
+
+
 ImgName=vladvons/lampp1
 
 ID=$(docker ps -a | grep $ImgName | awk '{print $1}')
