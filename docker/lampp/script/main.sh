@@ -39,9 +39,12 @@ install_mariadb()
     copy_file etc/mysql
     copy_file etc/monit/conf-enabled/mariadb
 
+    #chown -R www-data:staff /var/lib/mysql
+    #usermod -G staff mysql
+
     service mariadb restart
     sleep 1
-    mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '${USER_ADMIN_PASSW}' WITH GRANT OPTION;"
+    mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' IDENTIFIED BY '${USER_ADMIN_PASSW}' WITH GRANT OPTION;"
 }
 
 install_apache2()
@@ -71,7 +74,7 @@ install_php()
     ExecM "apt update"
 
     for Ver in $aVer; do
-        install_pkg "php${Ver} libapache2-mod-php${Ver} php${Ver}-fpm php${Ver}-mysqli"
+        install_pkg "php${Ver} libapache2-mod-php${Ver} php${Ver}-fpm php${Ver}-mysqli php${Ver}-gd"
     done
 }
 
@@ -155,7 +158,7 @@ user_add()
     local Home=/home/$aUser
 
     PASS=${aPassw:-$(pwgen -s 8 1)}
-    ExecM "useradd $aUser --groups sudo --home-dir $Home --create-home"
+    ExecM "useradd $aUser --groups sudo --home-dir $Home --create-home --shell /bin/bash"
     echo -e "$PASS\n$PASS\n" | passwd $aUser
     echo "Added user: $aUser, passw: $PASS"
     #copy_file etc/monit/conf-enabled/ssh
@@ -229,6 +232,8 @@ run()
     chmod -R g+w $Dir
 
     ExecM "lsof -i -P -n | grep LISTEN"
+    ExecM "cat /proc/meminfo | grep Mem"
+    echo
 
     trap trap_ctrl_c SIGINT SIGTERM
     echo "Running loop. Ctrl+C to break"

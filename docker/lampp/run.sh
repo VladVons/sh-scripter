@@ -12,7 +12,18 @@ Run_1()
 }
 
 
+Restore_2()
+{
+  docker start $Name
+  docker attach $Name
+}
+
+
+docker ps -a
+echo
+
 Run_1
+#Restore_1
 
 #mysql -u root -p -h 127.0.0.1
 #ssh admin@localhost -p 10022
