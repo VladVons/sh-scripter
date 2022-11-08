@@ -1,0 +1,658 @@
+2022-11-08-Tue, 09:50:00, ./script.sh->Build()
+2022-11-08-Tue, 09:50:00, ./script.sh, apt-get update, 
+2022-11-08-Tue, 09:50:09, ./script.sh, apt-get --yes upgrade, 
+2022-11-08-Tue, 09:50:15, ./script.sh->PkgInstall(sudo pwgen wget curl lsof lsb-release)
+2022-11-08-Tue, 09:50:15, ./script.sh, apt-get install --yes --no-install-recommends sudo pwgen wget curl lsof lsb-release, 
+2022-11-08-Tue, 09:50:28, ./script.sh->PkgInstall(gpg ca-certificates apt-transport-https)
+2022-11-08-Tue, 09:50:28, ./script.sh, apt-get install --yes --no-install-recommends gpg ca-certificates apt-transport-https, 
+2022-11-08-Tue, 09:50:34, ./script.sh->PkgInstall(monit postfix)
+2022-11-08-Tue, 09:50:34, ./script.sh, apt-get install --yes --no-install-recommends monit postfix, 
+2022-11-08-Tue, 09:50:51, ./script.sh->InstallEnv()
+2022-11-08-Tue, 09:50:51, ./script.sh->PkgInstall(mc htop)
+2022-11-08-Tue, 09:50:51, ./script.sh, apt-get install --yes --no-install-recommends mc htop, 
+2022-11-08-Tue, 09:50:57, ./script.sh->Install_php(7.4 8.1)
+2022-11-08-Tue, 09:50:57, ./script.sh->Install_apache2()
+2022-11-08-Tue, 09:50:57, ./script.sh->PkgInstall(apache2 apache2-utils libapache2-mod-fcgid)
+2022-11-08-Tue, 09:50:57, ./script.sh, apt-get install --yes --no-install-recommends apache2 apache2-utils libapache2-mod-fcgid, 
+2022-11-08-Tue, 09:51:09, ./script.sh, wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg, 
+2022-11-08-Tue, 09:51:09, ./script.sh, apt update, 
+2022-11-08-Tue, 09:51:10, ./script.sh->PkgInstall(php7.4 libapache2-mod-php7.4 php7.4-fpm php7.4-mysql php7.4-gd)
+2022-11-08-Tue, 09:51:10, ./script.sh, apt-get install --yes --no-install-recommends php7.4 libapache2-mod-php7.4 php7.4-fpm php7.4-mysql php7.4-gd, 
+2022-11-08-Tue, 09:51:41, ./script.sh->PkgInstall(php8.1 libapache2-mod-php8.1 php8.1-fpm php8.1-mysql php8.1-gd)
+2022-11-08-Tue, 09:51:41, ./script.sh, apt-get install --yes --no-install-recommends php8.1 libapache2-mod-php8.1 php8.1-fpm php8.1-mysql php8.1-gd, 
+2022-11-08-Tue, 09:51:59, ./script.sh->Install_ssh()
+2022-11-08-Tue, 09:51:59, ./script.sh->PkgInstall(ssh)
+2022-11-08-Tue, 09:51:59, ./script.sh, apt-get install --yes --no-install-recommends ssh, 
+2022-11-08-Tue, 09:52:04, ./script.sh->UserAdd(admin 19710819)
+2022-11-08-Tue, 09:52:04, ./script.sh, useradd admin --groups sudo --home-dir /home/admin --create-home --shell /bin/bash, 
+2022-11-08-Tue, 09:52:04, ./script.sh->Install_mariadb()
+2022-11-08-Tue, 09:52:04, ./script.sh->PkgInstall(mariadb-server)
+2022-11-08-Tue, 09:52:04, ./script.sh, apt-get install --yes --no-install-recommends mariadb-server, 
+2022-11-08-Tue, 09:52:28, ./script.sh->PkgClearCache()
+2022-11-08-Tue, 09:52:28, ./script.sh, apt-get --yes autoremove, 
+2022-11-08-Tue, 09:52:29, ./script.sh, apt-get --yes clean, 
+2022-11-08-Tue, 09:52:29, Build done
+2022-11-08-Tue, 11:26:53, ./script.sh->Services( start)
+2022-11-08-Tue, 11:26:53, ./script.sh, /etc/init.d/apache-htcacheclean start, 
+2022-11-08-Tue, 11:26:53, ./script.sh, /etc/init.d/apache2 start, 
+2022-11-08-Tue, 11:26:54, ./script.sh, /etc/init.d/hwclock.sh start, 
+2022-11-08-Tue, 11:26:54, ./script.sh, /etc/init.d/mariadb start, 
+2022-11-08-Tue, 11:26:55, ./script.sh, /etc/init.d/monit start, 
+2022-11-08-Tue, 11:26:55, ./script.sh, /etc/init.d/php7.4-fpm start, 
+2022-11-08-Tue, 11:26:56, ./script.sh, /etc/init.d/php8.1-fpm start, 
+2022-11-08-Tue, 11:26:56, ./script.sh, /etc/init.d/postfix start, 
+2022-11-08-Tue, 11:26:57, ./script.sh, /etc/init.d/procps start, 
+2022-11-08-Tue, 11:26:57, ./script.sh, /etc/init.d/rsync start, 
+2022-11-08-Tue, 11:26:57, ./script.sh, /etc/init.d/ssh start, 
+2022-11-08-Tue, 11:26:57, ./script.sh, /etc/init.d/sudo start, 
+2022-11-08-Tue, 11:26:57, ./script.sh, lsof -i -P -n | grep LISTEN, 
+2022-11-08-Tue, 11:26:57, ./script.sh, cat /proc/meminfo | grep Mem, 
+2022-11-08-Tue, 11:26:59, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:26:59, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:26:59, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:26:59, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:27:00, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:27:00, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 11:27:01, ./script.sh, /etc/init.d/monit stop, 
+2022-11-08-Tue, 11:27:01, ./script.sh, /etc/init.d/php7.4-fpm stop, 
+2022-11-08-Tue, 11:27:01, ./script.sh, /etc/init.d/php8.1-fpm stop, 
+2022-11-08-Tue, 11:27:01, ./script.sh, /etc/init.d/postfix stop, 
+2022-11-08-Tue, 11:27:02, ./script.sh, /etc/init.d/procps stop, 
+2022-11-08-Tue, 11:27:02, ./script.sh, /etc/init.d/rsync stop, 
+2022-11-08-Tue, 11:27:02, ./script.sh, /etc/init.d/ssh stop, 
+2022-11-08-Tue, 11:27:02, ./script.sh, /etc/init.d/sudo stop, 
+2022-11-08-Tue, 11:27:04, ./script.sh->Services( start)
+2022-11-08-Tue, 11:27:04, ./script.sh, /etc/init.d/apache-htcacheclean start, 
+2022-11-08-Tue, 11:27:04, ./script.sh, /etc/init.d/apache2 start, 
+2022-11-08-Tue, 11:27:05, ./script.sh, /etc/init.d/hwclock.sh start, 
+2022-11-08-Tue, 11:27:05, ./script.sh, /etc/init.d/mariadb start, 
+2022-11-08-Tue, 11:27:06, ./script.sh, /etc/init.d/monit start, 
+2022-11-08-Tue, 11:27:06, ./script.sh, /etc/init.d/php7.4-fpm start, 
+2022-11-08-Tue, 11:27:06, ./script.sh, /etc/init.d/php8.1-fpm start, 
+2022-11-08-Tue, 11:27:06, ./script.sh, /etc/init.d/postfix start, 
+2022-11-08-Tue, 11:27:07, ./script.sh, /etc/init.d/procps start, 
+2022-11-08-Tue, 11:27:07, ./script.sh, /etc/init.d/rsync start, 
+2022-11-08-Tue, 11:27:07, ./script.sh, /etc/init.d/ssh start, 
+2022-11-08-Tue, 11:27:07, ./script.sh, /etc/init.d/sudo start, 
+2022-11-08-Tue, 11:27:07, ./script.sh, lsof -i -P -n | grep LISTEN, 
+2022-11-08-Tue, 11:27:07, ./script.sh, cat /proc/meminfo | grep Mem, 
+2022-11-08-Tue, 11:27:09, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:27:09, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:27:09, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:27:09, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:27:11, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:27:11, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 11:27:12, ./script.sh, /etc/init.d/monit stop, 
+2022-11-08-Tue, 11:27:12, ./script.sh, /etc/init.d/php7.4-fpm stop, 
+2022-11-08-Tue, 11:27:12, ./script.sh, /etc/init.d/php8.1-fpm stop, 
+2022-11-08-Tue, 11:27:12, ./script.sh, /etc/init.d/postfix stop, 
+2022-11-08-Tue, 11:27:12, ./script.sh, /etc/init.d/procps stop, 
+2022-11-08-Tue, 11:27:12, ./script.sh, /etc/init.d/rsync stop, 
+2022-11-08-Tue, 11:27:12, ./script.sh, /etc/init.d/ssh stop, 
+2022-11-08-Tue, 11:27:12, ./script.sh, /etc/init.d/sudo stop, 
+2022-11-08-Tue, 11:27:18, ./script.sh->Services( start)
+2022-11-08-Tue, 11:27:18, ./script.sh, /etc/init.d/apache-htcacheclean start, 
+2022-11-08-Tue, 11:27:18, ./script.sh, /etc/init.d/apache2 start, 
+2022-11-08-Tue, 11:27:19, ./script.sh, /etc/init.d/hwclock.sh start, 
+2022-11-08-Tue, 11:27:19, ./script.sh, /etc/init.d/mariadb start, 
+2022-11-08-Tue, 11:27:20, ./script.sh, /etc/init.d/monit start, 
+2022-11-08-Tue, 11:27:20, ./script.sh, /etc/init.d/php7.4-fpm start, 
+2022-11-08-Tue, 11:27:21, ./script.sh, /etc/init.d/php8.1-fpm start, 
+2022-11-08-Tue, 11:27:21, ./script.sh, /etc/init.d/postfix start, 
+2022-11-08-Tue, 11:27:22, ./script.sh, /etc/init.d/procps start, 
+2022-11-08-Tue, 11:27:22, ./script.sh, /etc/init.d/rsync start, 
+2022-11-08-Tue, 11:27:22, ./script.sh, /etc/init.d/ssh start, 
+2022-11-08-Tue, 11:27:22, ./script.sh, /etc/init.d/sudo start, 
+2022-11-08-Tue, 11:27:22, ./script.sh, lsof -i -P -n | grep LISTEN, 
+2022-11-08-Tue, 11:27:22, ./script.sh, cat /proc/meminfo | grep Mem, 
+2022-11-08-Tue, 11:27:24, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:27:24, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:27:24, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:27:24, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:27:25, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:27:25, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 11:27:26, ./script.sh, /etc/init.d/monit stop, 
+2022-11-08-Tue, 11:27:26, ./script.sh, /etc/init.d/php7.4-fpm stop, 
+2022-11-08-Tue, 11:27:26, ./script.sh, /etc/init.d/php8.1-fpm stop, 
+2022-11-08-Tue, 11:27:26, ./script.sh, /etc/init.d/postfix stop, 
+2022-11-08-Tue, 11:27:27, ./script.sh, /etc/init.d/procps stop, 
+2022-11-08-Tue, 11:27:27, ./script.sh, /etc/init.d/rsync stop, 
+2022-11-08-Tue, 11:27:27, ./script.sh, /etc/init.d/ssh stop, 
+2022-11-08-Tue, 11:27:27, ./script.sh, /etc/init.d/sudo stop, 
+2022-11-08-Tue, 11:29:27, ./script.sh->Services( start)
+2022-11-08-Tue, 11:29:27, ./script.sh, /etc/init.d/apache-htcacheclean start, 
+2022-11-08-Tue, 11:29:27, ./script.sh, /etc/init.d/apache2 start, 
+2022-11-08-Tue, 11:29:28, ./script.sh, /etc/init.d/hwclock.sh start, 
+2022-11-08-Tue, 11:29:28, ./script.sh, /etc/init.d/mariadb start, 
+2022-11-08-Tue, 11:29:30, ./script.sh, /etc/init.d/monit start, 
+2022-11-08-Tue, 11:29:30, ./script.sh, /etc/init.d/php7.4-fpm start, 
+2022-11-08-Tue, 11:29:30, ./script.sh, /etc/init.d/php8.1-fpm start, 
+2022-11-08-Tue, 11:29:30, ./script.sh, /etc/init.d/postfix start, 
+2022-11-08-Tue, 11:29:31, ./script.sh, /etc/init.d/procps start, 
+2022-11-08-Tue, 11:29:31, ./script.sh, /etc/init.d/rsync start, 
+2022-11-08-Tue, 11:29:31, ./script.sh, /etc/init.d/ssh start, 
+2022-11-08-Tue, 11:29:31, ./script.sh, /etc/init.d/sudo start, 
+2022-11-08-Tue, 11:29:31, ./script.sh, lsof -i -P -n | grep LISTEN, 
+2022-11-08-Tue, 11:29:31, ./script.sh, cat /proc/meminfo | grep Mem, 
+2022-11-08-Tue, 11:29:34, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:29:34, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:29:34, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:29:34, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:29:35, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:29:35, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 11:29:36, ./script.sh, /etc/init.d/monit stop, 
+2022-11-08-Tue, 11:29:37, ./script.sh, /etc/init.d/php7.4-fpm stop, 
+2022-11-08-Tue, 11:29:37, ./script.sh, /etc/init.d/php8.1-fpm stop, 
+2022-11-08-Tue, 11:29:37, ./script.sh, /etc/init.d/postfix stop, 
+2022-11-08-Tue, 11:29:37, ./script.sh, /etc/init.d/procps stop, 
+2022-11-08-Tue, 11:29:37, ./script.sh, /etc/init.d/rsync stop, 
+2022-11-08-Tue, 11:29:37, ./script.sh, /etc/init.d/ssh stop, 
+2022-11-08-Tue, 11:29:37, ./script.sh, /etc/init.d/sudo stop, 
+2022-11-08-Tue, 11:30:16, ./script.sh->Services( start)
+2022-11-08-Tue, 11:30:16, ./script.sh, /etc/init.d/apache-htcacheclean start, 
+2022-11-08-Tue, 11:30:16, ./script.sh, /etc/init.d/apache2 start, 
+2022-11-08-Tue, 11:30:17, ./script.sh, /etc/init.d/hwclock.sh start, 
+2022-11-08-Tue, 11:30:17, ./script.sh, /etc/init.d/mariadb start, 
+2022-11-08-Tue, 11:30:18, ./script.sh, /etc/init.d/monit start, 
+2022-11-08-Tue, 11:30:18, ./script.sh, /etc/init.d/php7.4-fpm start, 
+2022-11-08-Tue, 11:30:18, ./script.sh, /etc/init.d/php8.1-fpm start, 
+2022-11-08-Tue, 11:30:18, ./script.sh, /etc/init.d/postfix start, 
+2022-11-08-Tue, 11:30:19, ./script.sh, /etc/init.d/procps start, 
+2022-11-08-Tue, 11:30:19, ./script.sh, /etc/init.d/rsync start, 
+2022-11-08-Tue, 11:30:19, ./script.sh, /etc/init.d/ssh start, 
+2022-11-08-Tue, 11:30:20, ./script.sh, /etc/init.d/sudo start, 
+2022-11-08-Tue, 11:30:20, ./script.sh, lsof -i -P -n | grep LISTEN, 
+2022-11-08-Tue, 11:30:20, ./script.sh, cat /proc/meminfo | grep Mem, 
+2022-11-08-Tue, 11:30:25, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:30:25, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:30:25, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:30:25, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:30:26, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:30:26, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 11:30:27, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:30:27, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:30:27, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:30:27, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:30:27, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:30:27, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 11:30:27, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:30:27, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:30:27, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:30:27, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:30:27, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:30:27, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 11:30:27, ./script.sh, /etc/init.d/monit stop, 
+2022-11-08-Tue, 11:30:27, ./script.sh, /etc/init.d/php7.4-fpm stop, 
+2022-11-08-Tue, 11:30:27, ./script.sh, /etc/init.d/php8.1-fpm stop, 
+2022-11-08-Tue, 11:30:27, ./script.sh, /etc/init.d/postfix stop, 
+2022-11-08-Tue, 11:30:27, ./script.sh, /etc/init.d/procps stop, 
+2022-11-08-Tue, 11:30:27, ./script.sh, /etc/init.d/rsync stop, 
+2022-11-08-Tue, 11:30:27, ./script.sh, /etc/init.d/ssh stop, 
+2022-11-08-Tue, 11:30:27, ./script.sh, /etc/init.d/sudo stop, 
+2022-11-08-Tue, 11:31:56, ./script.sh->Services( start)
+2022-11-08-Tue, 11:31:56, ./script.sh, /etc/init.d/apache-htcacheclean start, 
+2022-11-08-Tue, 11:31:56, ./script.sh, /etc/init.d/apache2 start, 
+2022-11-08-Tue, 11:31:57, ./script.sh, /etc/init.d/hwclock.sh start, 
+2022-11-08-Tue, 11:31:57, ./script.sh, /etc/init.d/mariadb start, 
+2022-11-08-Tue, 11:31:58, ./script.sh, /etc/init.d/monit start, 
+2022-11-08-Tue, 11:31:58, ./script.sh, /etc/init.d/php7.4-fpm start, 
+2022-11-08-Tue, 11:31:58, ./script.sh, /etc/init.d/php8.1-fpm start, 
+2022-11-08-Tue, 11:31:58, ./script.sh, /etc/init.d/postfix start, 
+2022-11-08-Tue, 11:31:59, ./script.sh, /etc/init.d/procps start, 
+2022-11-08-Tue, 11:31:59, ./script.sh, /etc/init.d/rsync start, 
+2022-11-08-Tue, 11:31:59, ./script.sh, /etc/init.d/ssh start, 
+2022-11-08-Tue, 11:31:59, ./script.sh, /etc/init.d/sudo start, 
+2022-11-08-Tue, 11:31:59, ./script.sh, lsof -i -P -n | grep LISTEN, 
+2022-11-08-Tue, 11:32:00, ./script.sh, cat /proc/meminfo | grep Mem, 
+2022-11-08-Tue, 11:32:01, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:01, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:01, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:01, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:01, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:01, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:01, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:02, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:02, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:02, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:02, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:02, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:32:02, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:03, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:03, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:03, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:03, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:03, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:03, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:03, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:03, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:03, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:03, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:03, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:32:03, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:04, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:04, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:04, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:04, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:04, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:04, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:04, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:04, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:04, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:04, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:04, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:04, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:04, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:04, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:04, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:04, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:04, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:04, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:04, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:04, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:32:04, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 11:32:05, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:05, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:05, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:05, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:05, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:05, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:05, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:05, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:05, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:32:05, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 11:32:05, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:05, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:05, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:05, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:05, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:05, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:05, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:05, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:05, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:32:05, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 11:32:05, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:05, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:05, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:05, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:05, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:05, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:05, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:05, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:05, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:32:05, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 11:32:05, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:05, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:05, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:05, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:05, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:32:05, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 11:32:05, ./script.sh, /etc/init.d/monit stop, 
+2022-11-08-Tue, 11:32:05, ./script.sh, /etc/init.d/php7.4-fpm stop, 
+2022-11-08-Tue, 11:32:05, ./script.sh, /etc/init.d/php8.1-fpm stop, 
+2022-11-08-Tue, 11:32:05, ./script.sh, /etc/init.d/postfix stop, 
+2022-11-08-Tue, 11:32:05, ./script.sh, /etc/init.d/procps stop, 
+2022-11-08-Tue, 11:32:05, ./script.sh, /etc/init.d/rsync stop, 
+2022-11-08-Tue, 11:32:05, ./script.sh, /etc/init.d/ssh stop, 
+2022-11-08-Tue, 11:32:05, ./script.sh, /etc/init.d/sudo stop, 
+2022-11-08-Tue, 11:32:45, ./script.sh->Services( start)
+2022-11-08-Tue, 11:32:45, ./script.sh, /etc/init.d/apache-htcacheclean start, 
+2022-11-08-Tue, 11:32:45, ./script.sh, /etc/init.d/apache2 start, 
+2022-11-08-Tue, 11:32:46, ./script.sh, /etc/init.d/hwclock.sh start, 
+2022-11-08-Tue, 11:32:46, ./script.sh, /etc/init.d/mariadb start, 
+2022-11-08-Tue, 11:32:47, ./script.sh, /etc/init.d/monit start, 
+2022-11-08-Tue, 11:32:47, ./script.sh, /etc/init.d/php7.4-fpm start, 
+2022-11-08-Tue, 11:32:47, ./script.sh, /etc/init.d/php8.1-fpm start, 
+2022-11-08-Tue, 11:32:47, ./script.sh, /etc/init.d/postfix start, 
+2022-11-08-Tue, 11:32:48, ./script.sh, /etc/init.d/procps start, 
+2022-11-08-Tue, 11:32:48, ./script.sh, /etc/init.d/rsync start, 
+2022-11-08-Tue, 11:32:48, ./script.sh, /etc/init.d/ssh start, 
+2022-11-08-Tue, 11:32:48, ./script.sh, /etc/init.d/sudo start, 
+2022-11-08-Tue, 11:32:48, ./script.sh, lsof -i -P -n | grep LISTEN, 
+2022-11-08-Tue, 11:32:49, ./script.sh, cat /proc/meminfo | grep Mem, 
+2022-11-08-Tue, 11:32:51, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:32:51, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:32:51, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:32:51, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:32:52, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:32:52, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 11:32:53, ./script.sh, /etc/init.d/monit stop, 
+2022-11-08-Tue, 11:32:53, ./script.sh, /etc/init.d/php7.4-fpm stop, 
+2022-11-08-Tue, 11:32:53, ./script.sh, /etc/init.d/php8.1-fpm stop, 
+2022-11-08-Tue, 11:32:53, ./script.sh, /etc/init.d/postfix stop, 
+2022-11-08-Tue, 11:32:53, ./script.sh, /etc/init.d/procps stop, 
+2022-11-08-Tue, 11:32:53, ./script.sh, /etc/init.d/rsync stop, 
+2022-11-08-Tue, 11:32:53, ./script.sh, /etc/init.d/ssh stop, 
+2022-11-08-Tue, 11:32:53, ./script.sh, /etc/init.d/sudo stop, 
+2022-11-08-Tue, 11:33:07, ./script.sh->Services( start)
+2022-11-08-Tue, 11:33:07, ./script.sh, /etc/init.d/apache-htcacheclean start, 
+2022-11-08-Tue, 11:33:07, ./script.sh, /etc/init.d/apache2 start, 
+2022-11-08-Tue, 11:33:08, ./script.sh, /etc/init.d/hwclock.sh start, 
+2022-11-08-Tue, 11:33:08, ./script.sh, /etc/init.d/mariadb start, 
+2022-11-08-Tue, 11:33:09, ./script.sh, /etc/init.d/monit start, 
+2022-11-08-Tue, 11:33:09, ./script.sh, /etc/init.d/php7.4-fpm start, 
+2022-11-08-Tue, 11:33:09, ./script.sh, /etc/init.d/php8.1-fpm start, 
+2022-11-08-Tue, 11:33:09, ./script.sh, /etc/init.d/postfix start, 
+2022-11-08-Tue, 11:33:10, ./script.sh, /etc/init.d/procps start, 
+2022-11-08-Tue, 11:33:10, ./script.sh, /etc/init.d/rsync start, 
+2022-11-08-Tue, 11:33:10, ./script.sh, /etc/init.d/ssh start, 
+2022-11-08-Tue, 11:33:10, ./script.sh, /etc/init.d/sudo start, 
+2022-11-08-Tue, 11:33:10, ./script.sh, lsof -i -P -n | grep LISTEN, 
+2022-11-08-Tue, 11:33:11, ./script.sh, cat /proc/meminfo | grep Mem, 
+2022-11-08-Tue, 11:33:14, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:33:14, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:33:14, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:33:14, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:33:15, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:33:15, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 11:33:16, ./script.sh, /etc/init.d/monit stop, 
+2022-11-08-Tue, 11:33:16, ./script.sh, /etc/init.d/php7.4-fpm stop, 
+2022-11-08-Tue, 11:33:16, ./script.sh, /etc/init.d/php8.1-fpm stop, 
+2022-11-08-Tue, 11:33:16, ./script.sh, /etc/init.d/postfix stop, 
+2022-11-08-Tue, 11:33:16, ./script.sh, /etc/init.d/procps stop, 
+2022-11-08-Tue, 11:33:16, ./script.sh, /etc/init.d/rsync stop, 
+2022-11-08-Tue, 11:33:16, ./script.sh, /etc/init.d/ssh stop, 
+2022-11-08-Tue, 11:33:16, ./script.sh, /etc/init.d/sudo stop, 
+2022-11-08-Tue, 11:33:55, ./script.sh->Services( start)
+2022-11-08-Tue, 11:33:55, ./script.sh, /etc/init.d/apache-htcacheclean start, 
+2022-11-08-Tue, 11:33:55, ./script.sh, /etc/init.d/apache2 start, 
+2022-11-08-Tue, 11:33:56, ./script.sh, /etc/init.d/hwclock.sh start, 
+2022-11-08-Tue, 11:33:56, ./script.sh, /etc/init.d/mariadb start, 
+2022-11-08-Tue, 11:33:57, ./script.sh, /etc/init.d/monit start, 
+2022-11-08-Tue, 11:33:57, ./script.sh, /etc/init.d/php7.4-fpm start, 
+2022-11-08-Tue, 11:33:57, ./script.sh, /etc/init.d/php8.1-fpm start, 
+2022-11-08-Tue, 11:33:57, ./script.sh, /etc/init.d/postfix start, 
+2022-11-08-Tue, 11:33:58, ./script.sh, /etc/init.d/procps start, 
+2022-11-08-Tue, 11:33:58, ./script.sh, /etc/init.d/rsync start, 
+2022-11-08-Tue, 11:33:58, ./script.sh, /etc/init.d/ssh start, 
+2022-11-08-Tue, 11:33:58, ./script.sh, /etc/init.d/sudo start, 
+2022-11-08-Tue, 11:33:58, ./script.sh, lsof -i -P -n | grep LISTEN, 
+2022-11-08-Tue, 11:33:59, ./script.sh, cat /proc/meminfo | grep Mem, 
+2022-11-08-Tue, 11:34:03, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:34:03, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:34:03, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:34:03, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:34:04, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:34:04, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 11:34:05, ./script.sh, /etc/init.d/monit stop, 
+2022-11-08-Tue, 11:34:05, ./script.sh, /etc/init.d/php7.4-fpm stop, 
+2022-11-08-Tue, 11:34:05, ./script.sh, /etc/init.d/php8.1-fpm stop, 
+2022-11-08-Tue, 11:34:05, ./script.sh, /etc/init.d/postfix stop, 
+2022-11-08-Tue, 11:34:05, ./script.sh, /etc/init.d/procps stop, 
+2022-11-08-Tue, 11:34:05, ./script.sh, /etc/init.d/rsync stop, 
+2022-11-08-Tue, 11:34:05, ./script.sh, /etc/init.d/ssh stop, 
+2022-11-08-Tue, 11:34:05, ./script.sh, /etc/init.d/sudo stop, 
+2022-11-08-Tue, 11:38:42, ./script.sh->Services( start)
+2022-11-08-Tue, 11:38:42, ./script.sh, /etc/init.d/apache-htcacheclean start, 
+2022-11-08-Tue, 11:38:42, ./script.sh, /etc/init.d/apache2 start, 
+2022-11-08-Tue, 11:38:43, ./script.sh, /etc/init.d/hwclock.sh start, 
+2022-11-08-Tue, 11:38:43, ./script.sh, /etc/init.d/mariadb start, 
+2022-11-08-Tue, 11:38:44, ./script.sh, /etc/init.d/monit start, 
+2022-11-08-Tue, 11:38:44, ./script.sh, /etc/init.d/php7.4-fpm start, 
+2022-11-08-Tue, 11:38:44, ./script.sh, /etc/init.d/php8.1-fpm start, 
+2022-11-08-Tue, 11:38:44, ./script.sh, /etc/init.d/postfix start, 
+2022-11-08-Tue, 11:38:46, ./script.sh, /etc/init.d/procps start, 
+2022-11-08-Tue, 11:38:46, ./script.sh, /etc/init.d/rsync start, 
+2022-11-08-Tue, 11:38:46, ./script.sh, /etc/init.d/ssh start, 
+2022-11-08-Tue, 11:38:46, ./script.sh, /etc/init.d/sudo start, 
+2022-11-08-Tue, 11:38:46, ./script.sh, lsof -i -P -n | grep LISTEN, 
+2022-11-08-Tue, 11:38:46, ./script.sh, cat /proc/meminfo | grep Mem, 
+2022-11-08-Tue, 11:39:17, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 11:39:17, ./script.sh->Services( stop)
+2022-11-08-Tue, 11:39:17, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 11:39:17, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 11:39:18, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 11:39:18, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 11:39:19, ./script.sh, /etc/init.d/monit stop, 
+2022-11-08-Tue, 11:39:19, ./script.sh, /etc/init.d/php7.4-fpm stop, 
+2022-11-08-Tue, 11:39:19, ./script.sh, /etc/init.d/php8.1-fpm stop, 
+2022-11-08-Tue, 11:39:19, ./script.sh, /etc/init.d/postfix stop, 
+2022-11-08-Tue, 11:39:19, ./script.sh, /etc/init.d/procps stop, 
+2022-11-08-Tue, 11:39:19, ./script.sh, /etc/init.d/rsync stop, 
+2022-11-08-Tue, 11:39:19, ./script.sh, /etc/init.d/ssh stop, 
+2022-11-08-Tue, 11:39:19, ./script.sh, /etc/init.d/sudo stop, 
+2022-11-08-Tue, 11:39:21, ./script.sh->Services( start)
+2022-11-08-Tue, 11:39:21, ./script.sh, /etc/init.d/apache-htcacheclean start, 
+2022-11-08-Tue, 11:39:21, ./script.sh, /etc/init.d/apache2 start, 
+2022-11-08-Tue, 11:39:22, ./script.sh, /etc/init.d/hwclock.sh start, 
+2022-11-08-Tue, 11:39:22, ./script.sh, /etc/init.d/mariadb start, 
+2022-11-08-Tue, 11:39:23, ./script.sh, /etc/init.d/monit start, 
+2022-11-08-Tue, 11:39:23, ./script.sh, /etc/init.d/php7.4-fpm start, 
+2022-11-08-Tue, 11:39:23, ./script.sh, /etc/init.d/php8.1-fpm start, 
+2022-11-08-Tue, 11:39:23, ./script.sh, /etc/init.d/postfix start, 
+2022-11-08-Tue, 11:39:24, ./script.sh, /etc/init.d/procps start, 
+2022-11-08-Tue, 11:39:24, ./script.sh, /etc/init.d/rsync start, 
+2022-11-08-Tue, 11:39:24, ./script.sh, /etc/init.d/ssh start, 
+2022-11-08-Tue, 11:39:24, ./script.sh, /etc/init.d/sudo start, 
+2022-11-08-Tue, 11:39:24, ./script.sh, lsof -i -P -n | grep LISTEN, 
+2022-11-08-Tue, 11:39:25, ./script.sh, cat /proc/meminfo | grep Mem, 
+2022-11-08-Tue, 11:45:53, ./script.sh->Install_postgres()
+2022-11-08-Tue, 11:45:53, ./script.sh->PkgInstall(gpg ca-certificates gnupg)
+2022-11-08-Tue, 11:45:53, ./script.sh, apt-get install --yes --no-install-recommends gpg ca-certificates gnupg, 
+2022-11-08-Tue, 11:45:59, ./script.sh, apt update, 
+2022-11-08-Tue, 11:46:01, ./script.sh, ExecAs(postgres /usr/lib/postgresql/9.4/bin/pg_ctl -D /var/lib/postgresql/9.4/main -l logfile start)
+2022-11-08-Tue, 11:53:49, ./script.sh->Install_postgres()
+2022-11-08-Tue, 11:53:49, ./script.sh->PkgInstall(gpg ca-certificates gnupg)
+2022-11-08-Tue, 11:53:49, ./script.sh, apt-get install --yes --no-install-recommends gpg ca-certificates gnupg, 
+2022-11-08-Tue, 11:54:18, ./script.sh, apt update, 
+2022-11-08-Tue, 11:54:27, ./script.sh->Install_postgres()
+2022-11-08-Tue, 11:54:27, ./script.sh->PkgInstall(gpg ca-certificates gnupg)
+2022-11-08-Tue, 11:54:27, ./script.sh, apt-get install --yes --no-install-recommends gpg ca-certificates gnupg, 
+2022-11-08-Tue, 13:04:47, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 13:04:47, ./script.sh->Services( stop)
+2022-11-08-Tue, 13:04:47, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 13:04:47, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 13:04:48, ./script.sh, /etc/init.d/cron stop, 
+2022-11-08-Tue, 13:04:48, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 13:04:48, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 13:04:49, ./script.sh, /etc/init.d/monit stop, 
+2022-11-08-Tue, 13:04:49, ./script.sh, /etc/init.d/php7.4-fpm stop, 
+2022-11-08-Tue, 13:04:49, ./script.sh, /etc/init.d/php8.1-fpm stop, 
+2022-11-08-Tue, 13:04:49, ./script.sh, /etc/init.d/postfix stop, 
+2022-11-08-Tue, 13:04:49, ./script.sh, /etc/init.d/postgresql stop, 
+2022-11-08-Tue, 13:04:50, ./script.sh, /etc/init.d/procps stop, 
+2022-11-08-Tue, 13:04:50, ./script.sh, /etc/init.d/rsync stop, 
+2022-11-08-Tue, 13:04:50, ./script.sh, /etc/init.d/ssh stop, 
+2022-11-08-Tue, 13:04:50, ./script.sh, /etc/init.d/sudo stop, 
+2022-11-08-Tue, 13:04:51, ./script.sh->Install_postgres()
+2022-11-08-Tue, 13:04:51, ./script.sh->PkgInstall(gpg ca-certificates gnupg)
+2022-11-08-Tue, 13:04:51, ./script.sh, apt-get install --yes --no-install-recommends gpg ca-certificates gnupg, 
+2022-11-08-Tue, 13:04:54, ./script.sh, apt update, 
+2022-11-08-Tue, 13:04:57, ./script.sh->PkgInstall(postgresql-common)
+2022-11-08-Tue, 13:04:57, ./script.sh, apt-get install --yes --no-install-recommends postgresql-common, 
+2022-11-08-Tue, 13:04:58, ./script.sh->Run()
+2022-11-08-Tue, 13:04:58, ./script.sh->Services( start)
+2022-11-08-Tue, 13:04:58, ./script.sh, /etc/init.d/apache-htcacheclean start, 
+2022-11-08-Tue, 13:04:58, ./script.sh, /etc/init.d/apache2 start, 
+2022-11-08-Tue, 13:04:59, ./script.sh, /etc/init.d/cron start, 
+2022-11-08-Tue, 13:04:59, ./script.sh, /etc/init.d/hwclock.sh start, 
+2022-11-08-Tue, 13:04:59, ./script.sh, /etc/init.d/mariadb start, 
+2022-11-08-Tue, 13:05:00, ./script.sh, /etc/init.d/monit start, 
+2022-11-08-Tue, 13:05:00, ./script.sh, /etc/init.d/php7.4-fpm start, 
+2022-11-08-Tue, 13:05:00, ./script.sh, /etc/init.d/php8.1-fpm start, 
+2022-11-08-Tue, 13:05:00, ./script.sh, /etc/init.d/postfix start, 
+2022-11-08-Tue, 13:05:01, ./script.sh, /etc/init.d/postgresql start, 
+2022-11-08-Tue, 13:05:03, ./script.sh, /etc/init.d/procps start, 
+2022-11-08-Tue, 13:05:03, ./script.sh, /etc/init.d/rsync start, 
+2022-11-08-Tue, 13:05:03, ./script.sh, /etc/init.d/ssh start, 
+2022-11-08-Tue, 13:05:03, ./script.sh, /etc/init.d/sudo start, 
+2022-11-08-Tue, 13:05:03, ./script.sh, netstat -tln | grep 'tcp ' | awk '{ print  }', 
+2022-11-08-Tue, 13:05:03, ./script.sh, cat /proc/meminfo | grep Mem, 
+2022-11-08-Tue, 13:07:11, ./script.sh->Trap_CtrlC()
+2022-11-08-Tue, 13:07:11, ./script.sh->Services( stop)
+2022-11-08-Tue, 13:07:11, ./script.sh, /etc/init.d/apache-htcacheclean stop, 
+2022-11-08-Tue, 13:07:11, ./script.sh, /etc/init.d/apache2 stop, 
+2022-11-08-Tue, 13:07:13, ./script.sh, /etc/init.d/cron stop, 
+2022-11-08-Tue, 13:07:13, ./script.sh, /etc/init.d/hwclock.sh stop, 
+2022-11-08-Tue, 13:07:13, ./script.sh, /etc/init.d/mariadb stop, 
+2022-11-08-Tue, 13:07:14, ./script.sh, /etc/init.d/monit stop, 
+2022-11-08-Tue, 13:07:14, ./script.sh, /etc/init.d/php7.4-fpm stop, 
+2022-11-08-Tue, 13:07:14, ./script.sh, /etc/init.d/php8.1-fpm stop, 
+2022-11-08-Tue, 13:07:14, ./script.sh, /etc/init.d/postfix stop, 
+2022-11-08-Tue, 13:07:14, ./script.sh, /etc/init.d/postgresql stop, 
+2022-11-08-Tue, 13:07:15, ./script.sh, /etc/init.d/procps stop, 
+2022-11-08-Tue, 13:07:15, ./script.sh, /etc/init.d/rsync stop, 
+2022-11-08-Tue, 13:07:15, ./script.sh, /etc/init.d/ssh stop, 
+2022-11-08-Tue, 13:07:15, ./script.sh, /etc/init.d/sudo stop, 
+2022-11-08-Tue, 13:07:20, ./script.sh->Run()
+2022-11-08-Tue, 13:07:20, ./script.sh->Services( start)
+2022-11-08-Tue, 13:07:20, ./script.sh, /etc/init.d/apache-htcacheclean start, 
+2022-11-08-Tue, 13:07:20, ./script.sh, /etc/init.d/apache2 start, 
+2022-11-08-Tue, 13:07:21, ./script.sh, /etc/init.d/cron start, 
+2022-11-08-Tue, 13:07:21, ./script.sh, /etc/init.d/hwclock.sh start, 
+2022-11-08-Tue, 13:07:21, ./script.sh, /etc/init.d/mariadb start, 
+2022-11-08-Tue, 13:07:22, ./script.sh, /etc/init.d/monit start, 
+2022-11-08-Tue, 13:07:22, ./script.sh, /etc/init.d/php7.4-fpm start, 
+2022-11-08-Tue, 13:07:22, ./script.sh, /etc/init.d/php8.1-fpm start, 
+2022-11-08-Tue, 13:07:22, ./script.sh, /etc/init.d/postfix start, 
+2022-11-08-Tue, 13:07:23, ./script.sh, /etc/init.d/postgresql start, 
+2022-11-08-Tue, 13:07:26, ./script.sh, /etc/init.d/procps start, 
+2022-11-08-Tue, 13:07:26, ./script.sh, /etc/init.d/rsync start, 
+2022-11-08-Tue, 13:07:26, ./script.sh, /etc/init.d/ssh start, 
+2022-11-08-Tue, 13:07:26, ./script.sh, /etc/init.d/sudo start, 
+2022-11-08-Tue, 13:07:26, ./script.sh, netstat -tln | grep 'tcp ' | awk '{ print $4 }', 
+2022-11-08-Tue, 13:07:26, ./script.sh, cat /proc/meminfo | grep Mem, 
+2022-11-08-Tue, 13:23:41, ./script.sh->Install_postgres(9.6)
+2022-11-08-Tue, 13:23:41, ./script.sh, ExecAs(postgres /usr/lib/postgresql/9.6/bin/psql -U postgres -d template1 -c "CREATE USER username WITH SUPERUSER PASSWORD 'passwordstring';")
+2022-11-08-Tue, 13:23:41, ./script.sh, ExecAs(postgres /usr/lib/postgresql/9.6/bin/psql -l -U postgres)
+2022-11-08-Tue, 13:24:47, ./script.sh->Install_postgres(9.6)
+2022-11-08-Tue, 13:24:47, ./script.sh, ExecAs(postgres /usr/lib/postgresql/9.6/bin/psql -U postgres -d template1 -c "CREATE USER  WITH SUPERUSER PASSWORD '';")
+2022-11-08-Tue, 13:24:47, ./script.sh, ExecAs(postgres /usr/lib/postgresql/9.6/bin/psql -l -U postgres)
+2022-11-08-Tue, 13:25:10, ./script.sh->Install_postgres(9.6)
+2022-11-08-Tue, 13:25:10, ./script.sh, ExecAs(postgres /usr/lib/postgresql/9.6/bin/psql -U postgres -d template1 -c "CREATE USER admin WITH SUPERUSER PASSWORD '19710819';")
+2022-11-08-Tue, 13:25:10, ./script.sh, ExecAs(postgres /usr/lib/postgresql/9.6/bin/psql -l -U postgres)
+2022-11-08-Tue, 13:27:49, ./script.sh->Install_postgres(9.6)
+2022-11-08-Tue, 13:27:49, ./script.sh, ExecAs(postgres /usr/lib/postgresql/9.6/bin/psql -U postgres -d template1 -c "CREATE USER admin WITH SUPERUSER PASSWORD '19710819';")
+2022-11-08-Tue, 13:27:49, ./script.sh, ExecAs(postgres /usr/lib/postgresql/9.6/bin/psql -U postgres -d template1 -c "CREATE DATABASE test1")
+2022-11-08-Tue, 13:27:50, ./script.sh, ExecAs(postgres /usr/lib/postgresql/9.6/bin/psql -l -U postgres)
+2022-11-08-Tue, 13:38:53, ./script.sh->LogClear()
+2022-11-08-Tue, 14:11:12, ./script.sh->LogClear()

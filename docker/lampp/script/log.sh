@@ -1,5 +1,6 @@
 # VladVons@gmail.com
 
+source script.conf
 
 cClBlack="\033[0;30m"
 cClRed="\033[1;31m"
@@ -23,8 +24,6 @@ ColorEcho()
 Log()
 {
     local aMsg="$1";
-
-    cFileLog="./docker.log"
 
     Msg="$(date +%Y-%m-%d-%a), $(date +%H:%M:%S), $aMsg"
     echo "$Msg"

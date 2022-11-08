@@ -1,32 +1,37 @@
 FROM debian
 
 LABEL author="vladvons@gmail.com"
-LABEL version="1.0.1, 2022.11.06"
 
 ARG DEBIAN_FRONTEND=noninteractive
 
 ARG PKG \
     PKG_PHP_VER \
     PKG_PYTHON_VER \
+    PKG_POSTGRES_VER \
     PKG_MARIADB \
-    USER_ADMIN_PASSW
+    PKG_SSH \
+    SUPERUSER \
+    SUPERUSER_PASSW
 
 ENV PKG=$PKG \
     PKG_PHP_VER=$PKG_PHP_VER \
     PKG_PYTHON_VER=$PKG_PYTHON_VER \
+    PKG_POSTGRES_VER=$PKG_POSTGRES_VER \
     PKG_MARIADB=$PKG_MARIADB \
-    USER_ADMIN_PASSW=$USER_ADMIN_PASSW
+    PKG_SSH=$PKG_SSH \
+    SUPERUSER=$SUPERUSER \
+    SUPERUSER_PASSW=$SUPERUSER_PASSW
 
 ADD mnt/www /var/www
 VOLUME ["/var/www"]
 
-EXPOSE 22 80 3306
+EXPOSE 22 80 3306 5432
 
-COPY ./script /script
-WORKDIR /script
+COPY ./script /root/script
+WORKDIR /root/script
 
 # only on build
-RUN ./main.sh build;
+RUN ./script.sh build;
 
 # only on run 
-CMD ["./main.sh", "run"]
+CMD ["./script.sh", "run"]
