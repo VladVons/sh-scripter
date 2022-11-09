@@ -2,25 +2,27 @@
 # Created: 2022.11.07
 # Author: Vladimir Vons <VladVons@gmail.com>
 
-source ./script.conf
-source ./log.sh
-source ./common.sh
 source ./install.sh
+
 
 About()
 {
     echo "Docker scripter. Ver $cVer. VladVons@gmail.com"
-    echo "apache, php, python, mysql, postgres, ssh"
+    echo "apache, php, python, mariadb, postgres, ssh"
 }
 
 InstallEnv()
 {
     Log "$0->$FUNCNAME($*)"
 
+    Msg="PKG $PKG, PKG_SSH $PKG_SSH, PKG_PHP_VER $PKG_PHP_VER, PKG_PYTHON_VER $PKG_PYTHON_VER, PKG_POSTGRES_VER $PKG_POSTGRES_VER, PKG_MARIADB $PKG_MARIADB"
+    Log "$Msg"
+    ColorEcho g "$Msg"
+
     [ "$PKG" ] && PkgInstall "$PKG"
     [ "$PKG_SSH" ] && Install_ssh
     [ "$PKG_PHP_VER" ] && Install_php "$PKG_PHP_VER"
-    [ "$PKG_PYTHON_VER" ] && Install_compile_python "$PKG_PYTHON_VER"
+    [ "$PKG_PYTHON_VER" ] && Install_python "$PKG_PYTHON_VER"
     [ "$PKG_POSTGRES_VER" ] && Install_postgres "$PKG_POSTGRES_VER"
     [ "$PKG_MARIADB" ] && Install_mariadb
 }
@@ -29,11 +31,16 @@ Build()
 {
     Log "$0->$FUNCNAME($*)"
 
+    declare -p | grep PKG | awk '{ print $3 }'
+    echo
+    sleep 1
+
+    #exit
     #Locales
 
     PkgUpgrade
-    PkgInstall "sudo pwgen wget curl lsb-release net-tools"
-    PkgInstall "gpg ca-certificates apt-transport-https"
+    PkgInstall "sudo pwgen wget curl net-tools iputils-ping apt-utils"
+    PkgInstall "gpg gpg-agent ca-certificates apt-transport-https"
     PkgInstall "monit postfix"
 
     InstallEnv
@@ -58,7 +65,7 @@ Run()
 
     Dir=/var/www
     if [ -d  $Dir ]; then
-        chown -R :staff $Dir
+        chown -R nobody:staff $Dir
         chmod 777 $Dir
         chmod -R g+w $Dir
     fi
@@ -79,7 +86,6 @@ Run()
 
 
 echo "--- Execute as $(whoami) ---"
-
 case $1 in
     build|b)  Build     "$2";;
     run|r)    Run       "$2";;

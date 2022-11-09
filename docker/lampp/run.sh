@@ -15,8 +15,8 @@ Run()
         --publish 80:80 \
         --publish 3306:3306 \
         --publish 5432:5432 \
-        --volume ${PWD}/mnt/www:/var/www \
         $cImgName
+        #--volume ${PWD}/mnt/www:/var/www \
 }
 
 Restore()
@@ -36,7 +36,7 @@ Help()
     netstat -tln | grep 'tcp '
 
     cat /etc/hosts | grep lan
-    #127.0.1.1 oc2_oster.lan oc3_oster.lan
+    #127.0.1.1 php74.lan php81.lan
 }
 
 docker ps -a

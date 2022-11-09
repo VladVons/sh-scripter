@@ -1,7 +1,8 @@
 # Created: 2022.11.07
 # Author: Vladimir Vons <VladVons@gmail.com>
 
-source script.conf
+source /etc/os-release
+source ./script.conf
 source ./log.sh
 
 
@@ -16,6 +17,7 @@ ExecAs()
 CopyFile()
 {
     local aPath=$1;
+    Log "$0->$FUNCNAME($*)"
 
     CurDir=$(pwd)
     cd $cFiles
@@ -24,6 +26,7 @@ CopyFile()
     else
         cp -R --parents $aPath /
     fi
+    ls /var/www
     cd $CurDir
 }
 

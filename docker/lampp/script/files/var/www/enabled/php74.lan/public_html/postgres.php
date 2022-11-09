@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "admin";
-$password = "19710819";
+$password = "admin";
 $dbname = "test1"; 
 
 $conn_string = "host={$servername} port=5432 dbname={$dbname} user={$username} password={$password}";

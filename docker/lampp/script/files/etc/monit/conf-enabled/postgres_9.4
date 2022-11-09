@@ -1,4 +1,4 @@
-check process mariadb with pidfile /run/postgresql/9.4-main.pid
+check process postgres_9.4 with pidfile /run/postgresql/9.4-main.pid
    start program = "/etc/init.d/postgresql start"
    stop program  = "/etc/init.d/postgresql stop"
    if 4 restarts within 20 cycles then timeout

@@ -1,6 +1,7 @@
-# VladVons@gmail.com
+# Created: 2022.11.07
+# Author: Vladimir Vons <VladVons@gmail.com>
 
-source script.conf
+source ./script.conf
 
 cClBlack="\033[0;30m"
 cClRed="\033[1;31m"

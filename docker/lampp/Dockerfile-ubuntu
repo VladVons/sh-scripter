@@ -1,4 +1,4 @@
-FROM debian
+FROM ubuntu
 
 LABEL author="vladvons@gmail.com"
 
@@ -22,8 +22,8 @@ ENV PKG=$PKG \
     SUPERUSER=$SUPERUSER \
     SUPERUSER_PASSW=$SUPERUSER_PASSW
 
-ADD mnt/www /var/www
-VOLUME ["/var/www"]
+COPY ./script/files/var/www /var/www
+VOLUME /var/www
 
 EXPOSE 22 80 3306 5432
 

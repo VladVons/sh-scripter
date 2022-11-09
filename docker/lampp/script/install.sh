@@ -1,10 +1,10 @@
-#!/bin/bash
 # Created: 2022.11.07
 # Author: Vladimir Vons <VladVons@gmail.com>
 
-source ./script.conf
-source ./log.sh
 source ./common.sh
+source ./repo.sh
+source ./repo-${ID}.sh
+
 
 Install_postgres()
 {
@@ -12,10 +12,7 @@ Install_postgres()
     Log "$0->$FUNCNAME($*)"
     ColorEcho g "$0->$FUNCNAME($*)"
 
-    PkgInstall "gpg ca-certificates gnupg"
-    curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor | tee /etc/apt/trusted.gpg.d/apt.postgresql.org.gpg >/dev/null
-    echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -sc)-pgdg main" > /etc/apt/sources.list.d/postgresql.list
-    ExecM "apt update"
+    repo_postgres
 
     PkgInstall "postgresql-common"
     for Ver in $aVer; do
@@ -51,6 +48,7 @@ Install_mariadb()
     service mariadb restart
     sleep 1
     mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO '$SUPERUSER'@'%' IDENTIFIED BY '${SUPERUSER_PASSW}' WITH GRANT OPTION;"
+    mysql -u root -e "CREATE DATABASE test1;"
 }
 
 Install_apache2()
@@ -75,11 +73,10 @@ Install_php()
     Log "$0->$FUNCNAME($*)"
     ColorEcho g "$0->$FUNCNAME($*)"
 
+    CopyFile var/www
     Install_apache2
 
-    ExecM "wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg"
-    echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
-    ExecM "apt update"
+    repo_php
 
     for Ver in $aVer; do
         PkgInstall "php${Ver} libapache2-mod-php${Ver} php${Ver}-fpm php${Ver}-gd php${Ver}-mysql php${Ver}-pgsql"
@@ -93,7 +90,7 @@ Install_compile_python()
     ColorEcho g "$0->$FUNCNAME($*)"
 
     PkgInstall "python3-setuptools python3-pip"
-    PkgInstall "wgte build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev"
+    PkgInstall "wget build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev"
 
     for Ver in $aVer; do
         File="Python-${Ver}.tgz"
@@ -112,19 +109,18 @@ Install_compile_python()
     done
 }
 
-Install_python_()
+Install_python()
 {
     local aVer=$1;
     Log "$0->$FUNCNAME($*)"
     ColorEcho g "$0->$FUNCNAME($*)"
 
-    PkgInstall "python3-pip"
-    PkgInstall "software-properties-common gpg gpg-agent dirmngr"
-    ExecM "add-apt-repository ppa:deadsnakes/ppa"
-    ExecM "apt update"
+    repo_python
 
+    PkgInstall "gcc libpq-dev libffi-dev"
+    PkgInstall "python3-pip python3-setuptools"
     for Ver in $aVer; do
-        PkgInstall "python${Ver}"
+        PkgInstall "python${Ver} python${Ver}-dev python${Ver}-venv"
     done
 }
 
