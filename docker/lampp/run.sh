@@ -35,14 +35,17 @@ Restore()
 
 Help()
 {
-    mysql -u admin -p -h 127.0.0.1
-    psql -h localhost -U admin -d test1
     ssh admin@localhost -p 10022
+
+    mysql -u admin -p -h 127.0.0.1
+    mysql -u admin -p -h 127.0.0.1 -e "CREATE DATABASE test2;"
+
+    psql -h localhost -U admin -d test1
+    psql -h localhost -U admin -d template1 -c "CREATE DATABASE test2;"
 
     netstat -tln | grep 'tcp '
 
-    cat /etc/hosts | grep lan
-    #127.0.1.1 php74.lan php81.lan
+    sudo echo "127.0.0.1 php74.lan php81.lan" >> /etc/hosts
 }
 
 docker ps -a
