@@ -1,7 +1,11 @@
 #!/bin/bash
 
-source ./script.conf
-source ./script/log.sh
+# Created: 2022.11.07
+# Author: Vladimir Vons <VladVons@gmail.com>
+# https://hub.docker.com/repository/docker/vladvons/lampp
+
+source ./docker.conf
+source ./docker/log.sh
 
 cCntName="lampp"
 
@@ -16,7 +20,9 @@ Run()
         --publish 3306:3306 \
         --publish 5432:5432 \
         $cImgName
-        #--volume ${PWD}/mnt/www:/var/www \
+        #--volume ${PWD}/mnt/mysql:/var/lib/mysql \
+        #--volume ${PWD}/mnt/postgresql:/var/lib/postgresql \
+
 }
 
 Restore()

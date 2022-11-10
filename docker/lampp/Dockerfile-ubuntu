@@ -22,16 +22,18 @@ ENV PKG=$PKG \
     SUPERUSER=$SUPERUSER \
     SUPERUSER_PASSW=$SUPERUSER_PASSW
 
-COPY ./script/files/var/www /var/www
+#VOLUME /var/www /var/lib/mysql /var/lib/postgresql
 VOLUME /var/www
 
 EXPOSE 22 80 3306 5432
 
-COPY ./script /root/script
-WORKDIR /root/script
+COPY ./docker/files/var/www /var/www
+
+COPY ./docker /root/docker
+WORKDIR /root/docker
 
 # only on build
-RUN ./script.sh build;
+RUN ./docker_build.sh;
 
 # only on run 
-CMD ["./script.sh", "run"]
+CMD ["./docker_run.sh"]

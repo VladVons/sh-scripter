@@ -1,0 +1,53 @@
+<pre>
+Hello !
+www/html
+
+====
+
+This LAMPP image contains:
+linux ubuntu(22.04), apache2, php(7.4, 8.1), python(3.10), mariadb(10), postgres(9.6), ssh, phpMyAdmin(5.2)
+
+===
+
+Access to mariadb, postgres, ssh
+user: admin
+password: admin
+
+mysql -u admin -p -h 127.0.0.1
+psql -h localhost -U admin -d test1
+ssh admin@localhost -p 10022
+
+====
+
+Example of apache2 virtual hosts:
+Edit your /etc/hosts
+    127.0.0.1 php56.lan php74.lan php81.lan
+
+To use your own www data:
+1) create file in current directory
+    www/enabled/php74.lan/public_html/index.html
+        hello world!
+
+2) run docker with --volume option
+    docker run \
+        --publish 10022:22 \
+        --publish 80:80 \
+        --publish 3306:3306 \
+        --publish 5432:5432 \
+        --volume ${PWD}/mnt/www:/var/www
+3) go page
+    http://localhost
+
+====
+
+<a href="http://php74.lan">php74.lan</a>
+<a href="http://php81.lan">php81.lan</a>
+
+<a href="/phpmyadamin">phpMyAdmin</a>
+<a href="/extplorer">eXtplorer</a>
+
+<a href="https://hub.docker.com/repository/docker/vladvons/lampp">Docker</a>
+<a href="https://github.com/VladVons/sh-scripter/tree/master/docker/lampp">Source on GitHub</a>
+
+====
+</pre>

@@ -1,0 +1,18 @@
+<VirtualHost *:80>
+    DocumentRoot "/var/www/enabled/php56.lan/public_html"
+    ServerName php56.lan
+
+    <FilesMatch \.php$>
+        SetHandler "proxy:unix:/var/run/php/php5.6-fpm.sock|fcgi://localhost/"
+    </FilesMatch>
+
+    ErrorLog ${APACHE_LOG_DIR}/php56.lan.log
+    CustomLog ${APACHE_LOG_DIR}/php56.lan_access.log combined
+
+    <Directory "/var/www/enabled/php56.lan/public_html">
+      Options Indexes FollowSymLinks
+      AllowOverride All
+      Order allow,deny
+      Allow from all
+    </Directory>
+</VirtualHost>

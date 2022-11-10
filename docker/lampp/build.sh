@@ -1,6 +1,11 @@
 #!/bin/bash
 
-source ./script.conf
+# Created: 2022.11.07
+# Author: Vladimir Vons <VladVons@gmail.com>
+# https://hub.docker.com/repository/docker/vladvons/lampp
+
+
+source ./docker.conf
 
 Build_1()
 {
@@ -31,11 +36,10 @@ Build_2()
 
 Push()
 {
-    docker image push \
-        $cImgName:ubuntu
+    docker image push $cImgName
 }
 
-Build_1
+#Build_1
 #Build_2
 #
-#Push
+Push
