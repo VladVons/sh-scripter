@@ -20,3 +20,5 @@ ID=$(docker images -a | grep "<none>" | awk '{print $3}')
 docker rmi $ID
 
 docker images -a
+
+rm ./docker/docker.log

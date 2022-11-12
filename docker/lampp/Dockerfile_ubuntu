@@ -1,0 +1,19 @@
+FROM ubuntu
+
+LABEL author="vladvons@gmail.com"
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+EXPOSE 22 80 3306 5432
+
+#VOLUME /var/www /var/lib/mysql /var/lib/postgresql
+#COPY ./docker/files/var/www /var/www
+
+COPY ./docker /root/docker
+WORKDIR /root/docker
+
+# only on build
+RUN ./docker_build.sh;
+
+# only on run 
+CMD ["./docker_run.sh"]
