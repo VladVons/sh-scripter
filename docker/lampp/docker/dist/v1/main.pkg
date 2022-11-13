@@ -1,4 +1,5 @@
-_sys_10
+#_begin
+./init
 ssh
 pureFtpd
 php_ver=5.6 7.4 8.1
@@ -6,4 +7,4 @@ python_ver=3.10
 postgres_ver=9.4
 mariadb
 list=mc htop
-_sys_90
+_end

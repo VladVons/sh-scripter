@@ -1,0 +1,6 @@
+---
+This LAMPP image contains:
+apache2, php, python, mariadb, postgres, ssh, phpMyAdmin
+
+To rebuild your custom image edit lampp/docker/dist/v1/main.pkg
+---

@@ -17,8 +17,12 @@ ParseFile_Pkg()
     #for Item in $(cat $aFile 2>/dev/null | grep "^[^\#]"); do
     sed '/^[[:blank:]]*#/d;s/#.*//' $aFile 2>/dev/null |\
     while IFS='=' read Key Val; do
+        if [[ "$Key" == .* ]]; then
+            cd $Key
+        else
+            cd $cDirRoot/$cDirPkg/$Key
+        fi
         gPkgArg=$Val
-        cd $cDirRoot/$cDirPkg/$Key
         ParseDir
     done
 }
@@ -34,7 +38,11 @@ ParseDir()
     fi
     gArrDone+=($PWD)
 
+
+    log_SetColor g
     dir_Show "*.txt"
+    log_SetColor
+
     dir_Source "*.conf"
 
     for Item in $(ls *.pkg 2>/dev/null | sort) ; do
@@ -61,7 +69,7 @@ ParseDir()
     dir_SourceExec "main.sh" "PostInstall"
 }
 
-install_Env_cPkg()
+install_Env()
 {
     log_Print "$0->$FUNCNAME($*)"
 
@@ -74,20 +82,40 @@ install_Env_cPkg()
     done
 }
 
-install_Run()
+install_Pkg()
 {
     local aPkg="$1"; aArg=$2;
     log_Print "$0->$FUNCNAME(*$)"
 
-    if [ "$aPkg" ]; then
+    Dir=$cDirPkg/$aPkg
+    if [ -d $Dir ]; then
         gPkgArg=$aArg
         cd $cDirPkg/$aPkg
         ParseDir
     else
+        log_Print "Not found $Dir"
+    fi
+}
+
+install_Dist()
+{
+    local aPkg="$1";
+    log_Print "$0->$FUNCNAME(*$)"
+
+    Dir="dist/$aPkg"
+    if [ -d $Dir ]; then
+        cd $Dir
         pkg_Update
         ParseDir
-        install_Env_cPkg
+        ParseFile_Pkg $aPkg
+        install_Env
+        pkg_Clear
+    else
+        log_Print "Not found $Dir"
     fi
-
-    pkg_Clear
 }
+
+case $1 in
+    dist|-d)    install_Dist  "$2" ;;
+    pkg|-p)     install_Pkg   "$2" ;;
+esac

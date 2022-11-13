@@ -4,7 +4,7 @@
 dir_Source()
 {
     local aMask="$1";
-    log_Print "$0->$FUNCNAME($*)"
+    #log_Print "$0->$FUNCNAME($*)"
 
     local Item
     for Item in $(ls $aMask 2>/dev/null | sort); do
@@ -33,11 +33,11 @@ dir_SourceExec()
 dir_Show()
 {
     local aMask="$1";
-    log_Print "$0->$FUNCNAME($*)"
+    #log_Print "$0->$FUNCNAME($*)"
 
     local Item
     for Item in $(ls $aMask 2>/dev/null | sort); do
-        echo "$0->$FUNCNAME $Item ..."
+        #echo "$0->$FUNCNAME $Item ..."
         cat $Item
         echo
     done
