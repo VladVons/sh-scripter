@@ -5,17 +5,15 @@
 # https://hub.docker.com/repository/docker/vladvons/lampp
 
 source ./docker.conf
-source ./docker/log/log.sh
 
-cCntName="lampp2"
 
-Run()
+_Run()
 {
     echo "$0->$FUNCNAME($*)"
 
+    echo "Image: $cImgName, container: $cCntName"
     docker run \
         --name $cCntName \
-        --publish 10021:21 \
         --publish 10022:22 \
         --publish 80:80 \
         --publish 3306:3306 \
@@ -24,19 +22,57 @@ Run()
         #--volume ${PWD}/mnt/www:/var/www \
         #--volume ${PWD}/mnt/mysql:/var/lib/mysql \
         #--volume ${PWD}/mnt/postgresql:/var/lib/postgresql \
-
 }
 
-Restore()
+_Restore()
 {
     echo "$0->$FUNCNAME($*)"
 
     docker start $cCntName
-    docker attach $cCntName
+    echo "container $cCntName started"
+    #docker attach $cCntName
+}
+
+Export()
+{
+    File=$cCntName.zst
+    echo "Export file $File ..."
+    #docker export $cCntName > $cCntName.dat
+    docker export $cCntName | zstd -zv > $File
+}
+
+Import()
+{
+    echo "$0->$FUNCNAME($*)"
+
+    File=$cCntName.zst
+    echo "Import file $File ..."
+    #docker import $File $cCntName.dat
+    zstd -dv --stdout $File | \
+        docker import - $cCntName \
+            --change "WORKDIR /root/docker" \
+            --change "CMD [\"./docker_run.sh\"]"
+    docker images -a
+}
+
+Run()
+{
+    echo "$0->$FUNCNAME($*)"
+
+    rm /home/vladvons/.ssh/known_hosts
+
+    docker ps -a
+    if [ "$(docker ps -a | grep $cImgName)" ]; then
+        _Restore
+    else
+        _Run
+    fi
 }
 
 Help()
 {
+    echo "$0->$FUNCNAME($*)"
+
     ssh admin@localhost -p 10022
 
     mysql -u admin -p -h 127.0.0.1
@@ -50,12 +86,9 @@ Help()
     sudo echo "127.0.0.1 php74.lan php81.lan" >> /etc/hosts
 }
 
-
-rm /home/vladvons/.ssh/known_hosts
-
-docker ps -a
-if [ "$(docker ps -a | grep $cImgName)" ]; then
-    Restore
-else
-    Run
-fi
+case $1 in
+    -r)    Run      "$2" ;;
+    -e)    Export   "$2" ;;
+    -i)    Import   "$2" ;;
+    *)     Run      "$2" ;;
+esac

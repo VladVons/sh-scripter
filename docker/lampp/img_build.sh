@@ -44,6 +44,10 @@ Img_Push()
     docker image push $cImgName
 }
 
+Cnt_Export()
+{
+    docker export a8b14091b4e7 > calc-container.tar
+}
 
 Img_Help()
 {
