@@ -1,4 +1,0 @@
-apt-utils 
-sudo pwgen wget curl net-tools iputils-ping zip unzip
-gpg gpg-agent ca-certificates apt-transport-https
-monit postfix

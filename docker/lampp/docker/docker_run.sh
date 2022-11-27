@@ -26,7 +26,7 @@ EOM
 
 Init_apache2()
 {
-    log_Print "$0->$FUNCNAME($*)"
+    Log "$0->$FUNCNAME($*)"
 
     Dir="/var/www"
     if [ -d  $Dir ]; then
@@ -38,7 +38,7 @@ Init_apache2()
 
 Init_mariadb()
 {
-    log_Print "$0->$FUNCNAME($*)"
+    Log "$0->$FUNCNAME($*)"
 
     Dir="/var/lib/mysql"
     if [ ! -d $Dir/mysql ]; then
@@ -57,7 +57,7 @@ Init_mariadb()
 
 Init_postgresql()
 {
-    log_Print "$0->$FUNCNAME($*)"
+    Log "$0->$FUNCNAME($*)"
 
     Pkgs=$(dpkg -l | grep postgres | grep server | awk '{ print $2 }')
     DirApp=/var/lib/postgresql
@@ -84,7 +84,7 @@ Init_postgresql()
 
 Init()
 {
-    log_Print "$0->$FUNCNAME($*)"
+    Log "$0->$FUNCNAME($*)"
 
     Services="apache2 mariadb postgresql"
     for Service in $Services; do
@@ -96,36 +96,27 @@ Init()
 
 Trap_CtrlC()
 {
-    log_Print "$0->$FUNCNAME($*)"
+    Log "$0->$FUNCNAME($*)"
 
     echo "Stop ..."
-    sys_Services "" stop
-
+    ServicesExec "" stop
     exit
 }
 
 Run()
 {
-    log_Print "$0->$FUNCNAME($*)"
+    Log "$0->$FUNCNAME($*)"
 
-    #Init
-    sys_Services "" start
+    Init
+    ServicesExec "" start
 
-    sys_ExecM "declare -p | grep cPkg_"
-    echo
-    sys_ExecM "hostname -I | awk '{print $1}'"
-    echo
-    sys_ExecM "netstat -tln | grep 'tcp ' | awk '{ print \$4 }'"
-    echo
-    sys_ExecM "cat /proc/meminfo | grep Mem"
+    ExecM "netstat -tln | grep 'tcp ' | awk '{ print \$4 }'"
+    ExecM "cat /proc/meminfo | grep Mem"
     echo
 
     trap Trap_CtrlC SIGINT SIGTERM
     ShowUserAuth
     About
-
-    echo
-    date
     echo "Running loop. Ctrl+C to break"
     while true; do
         sleep 1
