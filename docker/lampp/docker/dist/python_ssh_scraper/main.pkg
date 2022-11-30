@@ -1,0 +1,5 @@
+./init
+ssh
+ext/list=mc htop
+./python
+ext/end

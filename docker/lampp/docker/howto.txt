@@ -1,0 +1,5 @@
+#install all distribution listed in file ./dist/v1/main.pkg
+sudo ./install.sh -d apache_mariadb_php_postgres_python_ssh
+
+#install only one package from directory ./pkg
+sudo ./install.sh -p ssh
