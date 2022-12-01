@@ -49,6 +49,22 @@ Cnt_Export()
     docker export a8b14091b4e7 > calc-container.tar
 }
 
+Img_Save()
+{
+    File=$(echo $cImgName | tr '/' '-')
+    File="$File.docker.zst"
+    docker save $cImgName | zstd -zv > $File
+    echo "Saved to $File"
+}
+
+Img_Load()
+{
+  local aFile="$1";
+
+  zstd -dv --stdout $aFile | docker load
+  docker images -a
+}
+
 List()
 {
     docker images -a
@@ -70,6 +86,8 @@ case $1 in
     clear|-c)          Img_Clear   "$2" ;;
     push|-p)           Img_Push    "$2" ;;
     run|-r)            Img_Run     "$2" ;;
-    list|-l)           List        "$2" ;;
+    save|-s)           Img_Save    "$2" ;;
+    load|-l)           Img_Load    "$2" ;;
+    list)              List        "$2" ;;
     *)                 Img_Help    "$2" ;;
 esac
