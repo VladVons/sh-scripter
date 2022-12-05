@@ -15,7 +15,8 @@ _Run()
     docker run \
         --restart unless-stopped \
         --name $cCntName \
-        --publish 10023:22 \
+        --hostname $cCntName \
+        --publish 10022:22 \
         $cImgName
         #--publish 80:80 \
         #--publish 3306:3306 \
@@ -70,6 +71,11 @@ Run()
     fi
 }
 
+Bash()
+{
+    docker exec -it $cCntName bash
+}
+
 Save()
 {
     docker ps
@@ -100,5 +106,6 @@ case $1 in
     -e)    Export   "$2" ;;
     -i)    Import   "$2" ;;
     -s)    Save     "$2" ;;
+    -b)    Bash     "$2" ;;
     *)     Run      "$2" ;;
 esac

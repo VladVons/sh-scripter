@@ -7,12 +7,13 @@ www/html
 This LAMPP image contains:
 linux ubuntu(22.04), apache2, php(5.6 7.4, 8.1), python(3.10), mariadb(10), postgres(9.6), ssh, phpMyAdmin(5.2)
 
-To rebuild your custom image edit lampp/docker/dist/v1/main.pkg
-===
+To rebuild your custom image edit lampp/docker/dist/DIST_NAME/main.pkg
+
+====
 
 Access to mariadb, postgres, ssh
 user: admin
-password: admin
+password: 098iop
 
 mysql -u admin -p -h 127.0.0.1
 psql -h localhost -U admin -d test1
@@ -41,7 +42,6 @@ To use your own www data:
 
 ====
 
-
 <a href="http://php56.lan">php56.lan</a>
 <a href="http://php74.lan">php74.lan</a>
 <a href="http://php81.lan">php81.lan</a>
@@ -51,6 +51,8 @@ To use your own www data:
 
 <a href="/mysql.php">mysql</a>
 <a href="/postgres.php">postgres</a>
+
+====
 
 <a href="https://hub.docker.com/repository/docker/vladvons/lampp">Docker</a>
 <a href="https://github.com/VladVons/sh-scripter/tree/master/docker/lampp">Source on GitHub</a>

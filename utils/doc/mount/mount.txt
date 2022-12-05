@@ -1,10 +1,10 @@
 mount -t ext4 /dev/sdb5 /mnt/hdd/data3
 
-# apt install ntfs-3g
+#apt install ntfs-3g
 mount -t ntfs /dev/sdb1 /mnt/ntfs
 
-# apt install cifs-utils
-mount -t cifs //192.168.2.1/temp /mnt/smb/tr24 -o user=guest -o password=guest
+#apt install cifs-utils
+mount -t cifs //192.168.2.102/temp /mnt/smb/tr24 -o user=guest -o password=guest
 
 mount -t nfs 192.168.5.11:/home/chroot/lxde-32_xenial_i386 /mnt/nfs
 
@@ -18,5 +18,7 @@ convmvfs /mnt/ufsx -o allow_other -o srcdir=/mnt/ufs -o icharset=koi8-u -o ochar
 
 mount -t vboxsf -o uid=XXX share-name /path/to/folder/share/
 
-# apt install sshfs
-mount -t sshfs vladvons@89.117.52.241:/ /mnt/sshfs/srv2
+#apt install sshfs
+#ssh-keygen -t rsa
+#ssh-copy-id -i ~/.ssh/id_rsa.pub vladvons@192.168.2.102
+mount -t sshfs vladvons@192.168.2.102:/ /mnt/sshfs/srv2

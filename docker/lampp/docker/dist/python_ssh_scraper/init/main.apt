@@ -1,3 +1,5 @@
 apt-utils
 sudo wget net-tools iputils-ping zip unzip
 postfix
+#
+mc htop git rsync

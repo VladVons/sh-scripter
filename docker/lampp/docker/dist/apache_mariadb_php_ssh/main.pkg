@@ -1,0 +1,6 @@
+./init
+ssh
+apache2
+#php_ver=5.6 7.4 8.1
+#mariadb
+ext/end

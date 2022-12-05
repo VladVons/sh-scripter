@@ -23,8 +23,10 @@ pkg_Update()
     dpkg --configure -a
     apt install --fix-broken --yes
 
-    apt update --yes
+    apt update --yes --fix-missing
     apt dist-upgrade --yes
+
+    #apt-get install --yes --no-install-recommends apt-utils
 }
 
 pkg_Clear()
@@ -34,6 +36,9 @@ pkg_Clear()
     rm /var/cache/apt/archives/lock 2>/dev/null
     apt-get autoremove --yes
     apt-get clean --yes
+
+    rm -rf /var/lib/apt/lists/* 2>/dev/null
+    rm -rf /usr/src/* 2>/dev/null
 }
 
 pkg_FileListInstall()
