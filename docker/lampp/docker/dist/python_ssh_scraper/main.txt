@@ -1,6 +1,0 @@
----
-This image contains:
-python, ssh, scraper
-
-To rebuild your custom image edit lampp/docker/dist/DIST_NAME/main.pkg
----

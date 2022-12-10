@@ -1,0 +1,6 @@
+---
+This LAMP2 image contains:
+apache2, php, python, mariadb, postgres, ssh, phpMyAdmin, vsftpd
+
+To rebuild your custom image edit lamp2/docker/dist/DIST_NAME/main.pkg
+---
