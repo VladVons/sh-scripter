@@ -1,0 +1,4 @@
+apt-transport-https
+software-properties-common
+wget
+grafana

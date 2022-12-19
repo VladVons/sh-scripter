@@ -1,0 +1,14 @@
+[Unit]
+Description=epoptes-client service
+After=network.target
+
+[Service]
+EnvironmentFile=/etc/default/epoptes-client
+User=root
+ExecStart=/usr/sbin/epoptes-client
+Restart=always
+RestartSec=15
+Type=simple
+
+[Install]
+WantedBy=multi-user.target

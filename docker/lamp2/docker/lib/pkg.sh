@@ -37,6 +37,8 @@ pkg_Clear()
     apt-get autoremove --yes
     apt-get clean --yes
 
+    apt-get remove --purge $(dpkg -l | awk '/^rc/{print $2}')
+
     rm -rf /var/lib/apt/lists/* 2>/dev/null
     rm -rf /usr/src/* 2>/dev/null
 }
