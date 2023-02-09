@@ -1,0 +1,20 @@
+=== MikroTik ===
+https://kiberlis.ru/mikrotik-wireguard-client
+
+/interface/wireguard
+add listen-port=54321 name=wireguard1
+
+/interface/wireguard/peers
+add allowed-address=0.0.0.0/0 endpoint-address=vpn2.oster.com.ua endpoint-port=54321 interface=wireguard1 public-key="kpCCPsUos+XF1vgBrAFiVT/m7n3pcGkWShMYnnSKF1M="
+
+/ip address
+add address=172.16.5.111/24 interface=wireguard1
+
+/ip firewall nat
+add action=masquerade chain=srcnat out-interface=wireguard1
+
+/ip/firewall/filter
+add action=accept chain=input dst-port=54321 protocol=udp comment="WireGuard"
+
+/interface list member
+add interface=wireguard1 list=LAN
