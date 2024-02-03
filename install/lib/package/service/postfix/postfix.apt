@@ -1,6 +1,7 @@
 postfix
-mailutils
+libsasl2-modules
+
+#mailutils
 #openssl
 #libssl-dev
-libsasl2-modules
 #ssl-cert
