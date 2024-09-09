@@ -11,9 +11,12 @@ sys_ExecM()
 
 sys_ExecAs()
 {
-    local aUser=$1; aCmd=$2;
+    local aUser=$1; aCmd=$2; aDir=$3;
     log_Print "$0, $FUNCNAME($*)"
 
+    if [ -n "$aDir" ]; then
+       aCmd="cd $aDir && $aCmd"
+    fi
     su - $aUser -c "$aCmd"
 }
 

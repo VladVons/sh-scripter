@@ -18,6 +18,7 @@ Report()
 
     mkdir -p $DirReport
     goaccess $aHost.log -o $DirReport/$aHost.html --log-format=COMBINED
+    rm $aHost.log
 }
 
 ParseDir()

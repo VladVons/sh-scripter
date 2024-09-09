@@ -13,11 +13,6 @@
 - Folder dir count
     find %f -type d | wc -l 
 
-#- LinkSym src
-#    srcF=`ls -l %f  | awk '{print $11}'`
-#    srcD=`dirname $srcF`
-#    cd $srcD
-
 - Strip comments #
     grep "^[^\#]" %f
 
@@ -42,6 +37,30 @@
     src=`basename %f /`
     dst=%D/$src
     tar -cf - $src > $dst.tar
+
+- Compress current subdir (zip)
+        Pwd=`basename %d /`
+        cd .. && \
+        zip -r "$Pwd.zip" "$Pwd" && \
+        echo "../$Pwd.zip created"
+
+- Compress current subdir (7z)
+        Pwd=`basename %d /`
+        cd .. && \
+        7z a "$Pwd.7z" "$Pwd" && \
+        echo "../$Pwd.7z created"
+
+- Compress current subdir (tar.gz)
+        Pwd=`basename %d /`
+        cd .. && \
+        tar cf - "$Pwd" | gzip -f9 > "$Pwd.tar.gz" && \
+        echo "../$Pwd.tar.gz created"
+
+- Compress current subdir (tar)
+        Pwd=`basename %d /`
+        cd .. && \
+        tar cf - "$Pwd" > "$Pwd.tar" && \
+        echo "../$Pwd.tar created"
 
 - Archive Unpack
     /admin/conf/script/utils.sh ArchUnpack %d/%f %D

@@ -1,0 +1,10 @@
+# pip3 install -r requires.lst
+
+aiohttp
+bs4
+cffi
+jinja2
+lxml
+
+#--- see script.sh->PlayWright()
+#playwright

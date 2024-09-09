@@ -1,13 +1,14 @@
 _Requires()
 {
     # user cant access /root folder, so copy to its home
-    File=requires.lst
-    FileDst=/home/$cSuperUser/$File
-    cp $File $FileDst
-    chown $cSuperUser $FileDst
+    Dir=as_user
+    DirDst=/home/$cSuperUser/$Dir
+    rm -rf $DirDst
+    cp -r $Dir $DirDst
+    chown -R $cSuperUser $DirDst
 
-    sys_ExecAs $cSuperUser "pip3 install -r $File"
-    rm $FileDst
+    sys_ExecAs $cSuperUser "./script.sh" "$DirDst"
+    #rm -r $DirDst
 }
 
 _App()
