@@ -1,6 +1,7 @@
 apt-utils
-systemd
-sudo wget net-tools iputils-ping zip unzip
+sudo wget net-tools iputils-ping iproute2
+wireguard
+zip unzip
 postfix
 #
 mc htop git rsync

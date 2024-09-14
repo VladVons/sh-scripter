@@ -2,19 +2,13 @@
 # Created: 2023.02.08
 # Vladimir Vons, VladVons@gmail.com
 
+
+ServerConf=wg-server_1
 source ./WG.sh
 
-Conf_01()
+GenClient()
 {
-    ServerConf=wg-server_1
-    #ServerIp=$(curl ifconfig.me)
     ServerIp=vpn2.oster.com.ua
-    #
-    ServerConfFile=$SysDir/$ServerConf.conf
-
-    #ServiceRemove
-    #ServerCreate 10.71.1.1/24 10711 eth0
-
 
     #ClientCreate VladVonsPc       11 "0.0.0.0/0"
     #ClientCreate VladVons         12 "0.0.0.0/0"
@@ -24,24 +18,25 @@ Conf_01()
     #ClientCreate SlavaVons        16 "0.0.0.0/0"
     #ClientCreate SergHomitsky     21 "0.0.0.0/0"
     #ClientCreate JuraDovbush      22 "0.0.0.0/0"
+    #ClientCreate Alex_Karpenko     23 "0.0.0.0/0"
+    #ClientCreate Davyd_Description 31 "0.0.0.0/0"
+    #
+    #ClientCreate Srv1             51 "0.0.0.0/0"
+    #ClientCreate SrvMedCol        52 "0.0.0.0/0"
+    #ClientCreate SrvGeelik        53 "10.71.1.0/24"
+    #ClientCreate SrvArsenal       54 "10.71.1.0/24"
+    #ClientCreate SrvBTG           55 "10.71.1.0/24"
+    #ClientCreate SrvGazda          56 "10.71.1.0/24"
 
     #ClientsCreate user 50 55
     #CreateUsers user 50 55 0.0.0.0/0
 
-    LimitSpeed 5000 5000
+    #LimitSpeed 5000 5000
     #ServiceRestart
 }
 
-Test()
-{
-    ServerConf=wg-server_2
-    ServerIp=vpn2.oster.com.ua
-    ServerConfFile=$SysDir/$ServerConf.conf
 
-    ServiceRemove
+#ServerCreate 10.71.1.1/24 10711 eth0
 
-    #CreateUser dovbush2  23 "0.0.0.0/0"
-}
-
-Conf_01
-#Test
+#GenClient
+ServiceRestart

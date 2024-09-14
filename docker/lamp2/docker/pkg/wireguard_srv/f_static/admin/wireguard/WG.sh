@@ -2,8 +2,11 @@
 # Created: 2023.02.08
 # Vladimir Vons, VladVons@gmail.com
 
+#---must be defined external
+#ServerConf=wg-server_1
 
 SysDir=/etc/wireguard
+ServerConfFile=$SysDir/$ServerConf.conf
 
 
 Version()
@@ -48,6 +51,7 @@ ServiceRemove()
 ServiceRestart()
 {
     Log "$FUNCNAME($*)"
+    Log "service wg-quick@$ServerConf restart"
 
     service wg-quick@$ServerConf restart
     wg show
@@ -115,10 +119,21 @@ ClientsCreate()
     done
 }
 
+ClientSideInite()
+{
+    local aConf=$1;
+    Log "$FUNCNAME($*)"
+
+    systemctl enable wg-quick@wg-oster
+    systemctl start wg-quick@wg-oster
+    service wg-quick@wg-oster restart
+}
+
 ServerCreate()
 {
     local aNetIp=$1; local aPort=$2; local aNetIf=$3;
     Log "$FUNCNAME($*)"
+    Log "ServerConfFile: $ServerConfFile"
 
     UserBase=$ServerConf
     UserDir="$ServerConf/$UserBase"

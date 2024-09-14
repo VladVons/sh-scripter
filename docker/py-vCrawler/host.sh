@@ -13,12 +13,16 @@ _Run()
     echo "Image: $cImgName, container: $cCntName"
 
     docker run \
+        --privileged \
         --restart unless-stopped \
+        --cap-add=NET_ADMIN \
+        --cap-add=SYS_MODULE \
         --name $cCntName \
         --hostname $cCntName \
         --publish 10022:22 \
         --env-file ./host.conf \
-        --volume ${PWD}/mnt:/mnt/host \
+        --volume ./mnt:/mnt/host \
+        --volume ./conf/wireguard:/etc/wireguard \
         $cImgName 
         #--detach \
 
@@ -56,5 +60,10 @@ Run()
 
 
 #Stop
-Run
-docker exec -it $cCntName /bin/bash
+#Run
+#
+#docker exec -it $cCntName /bin/bash
+docker exec -it crawler_client_v1 /bin/bash
+#docker restart crawler_client_v1
+#
+#docker exec -it -u admin $cCntName /bin/bash

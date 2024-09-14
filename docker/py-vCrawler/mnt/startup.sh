@@ -1,1 +1,2 @@
-timedatectl set-timezone Europe/Kiev
+#--- wireguard
+wg-quick up wg-crawler

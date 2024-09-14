@@ -3,10 +3,9 @@ DirPy=~/virt/python3
 PyVirt()
 {
     echo "creating local python..."
-    python3 -m venv $Dir
+    python3 -m venv $DirPy
     #virtualenv -p python3.12 $DirPy --system-site-package
 }
-
 
 PyPkg()
 {
@@ -21,7 +20,7 @@ PlayWright()
 {
     source $DirPy/bin/activate
     pip3 install playwright
-    playwright install
+    playwright install firefox
 }
 
 echo "=== run as user $(whoami) ==="
