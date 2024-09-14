@@ -9,6 +9,8 @@ source ./docker.conf
 
 Img_Build()
 {
+    clear
+
     docker build \
         --force-rm \
         --tag $cImgName \
@@ -20,6 +22,9 @@ Img_Build()
 
 Img_Clear()
 {
+    echo "clear image $cImgName"
+    echo
+
     ID=$(docker ps -a | grep $cImgName | awk '{print $1}')
     docker stop $ID
     docker rm $ID

@@ -1,9 +1,3 @@
-python3-pip
-python3-dev
-python3-venv
-virtualenv
-
-#--- playwright 
 libnss3
 libatk1.0-0
 libatk-bridge2.0-0
@@ -14,3 +8,8 @@ libxdamage1
 libgbm-dev
 libxshmfence-dev
 libasound2
+libxkbcommon0
+libxfixes3
+libpango-1.0-0
+libcairo2
+libasound2t64

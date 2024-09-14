@@ -1,0 +1,16 @@
+[Unit]
+Description=vCrawler service
+After=network.target
+
+[Service]
+EnvironmentFile=/etc/default/vCrawler
+WorkingDirectory=/usr/lib/py-vCrawler/src
+User=admin
+#ExecStart=/usr/bin/python3 -B vCrawler.py
+ExecStart=/bin/bash -c './vCrawler.sh'
+Restart=always
+RestartSec=15
+Type=simple
+
+[Install]
+WantedBy=multi-user.target

@@ -1,8 +1,10 @@
 _Requires()
 {
     # user cant access /root folder, so copy to its home
+
     Dir=as_user
     DirDst=/home/$cSuperUser/$Dir
+
     rm -rf $DirDst
     cp -r $Dir $DirDst
     chown -R $cSuperUser $DirDst
@@ -13,13 +15,13 @@ _Requires()
 
 _App()
 {
-    chown -R $cSuperUser /usr/lib/vScraper
+    chown -R $cSuperUser /usr/lib/vCrawler
 }
 
 _Service()
 {
     systemctl daemon-reload
-    systemctl enable vScraper.service
+    systemctl enable vCrawler.service
 }
 
 

@@ -1,6 +1,7 @@
 # Created: 2022.11.11
 # Author: Vladimir Vons <VladVons@gmail.com>
 
+
 cVer="1.0.5, 2022-11-13"
 cDirInit="/etc/init.d"
 cFileLog="$PWD/docker.log"
@@ -16,5 +17,5 @@ done
 About()
 {
     echo "vDocker. Ver $cVer. VladVons@gmail.com"
-    echo "apache, php, python, mariadb, postgres, ssh"
+    #echo "apache, php, python, mariadb, postgres, ssh"
 }

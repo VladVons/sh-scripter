@@ -49,3 +49,17 @@ sys_Random()
     local aLen=$1;
     cat /dev/urandom | tr -dc A-Za-z0-9 | head -c $aLen
 }
+
+sys_TimeZone()
+{
+    local aZone="$1";
+    log_Print "$0->$FUNCNAME($*)"
+
+    FileTimeZone="/usr/share/zoneinfo/$aZone"
+    FileLocalTime="/etc/localtime"
+
+    if [ -f $FileTimeZone ]; then
+        rm $FileLocalTime
+        ln -s $FileTimeZone $FileLocalTime
+    fi
+}

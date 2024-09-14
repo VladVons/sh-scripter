@@ -108,9 +108,16 @@ Run()
 {
     log_Print "$0->$FUNCNAME($*)"
 
+
     #Init
     sys_Services "" start
 
+    echo
+    #sys_ExecM "timedatectl set-timezone Europe/Kiev"
+    sys_TimeZone "Europe/Kyiv"
+    sys_ExecM "date"
+
+    echo
     sys_ExecM "declare -p | grep cPkg_"
     echo
     sys_ExecM "hostname -I | awk '{print $1}'"
@@ -119,6 +126,15 @@ Run()
     echo
     sys_ExecM "cat /proc/meminfo | grep Mem"
     echo
+    sys_ExecM "printenv | grep env_"
+    echo
+
+
+    File="/mnt/host/startup.sh"
+    if [ -f "$File" ]; then
+        echo "Executing $File"
+        $File
+    fi
 
     trap Trap_CtrlC SIGINT SIGTERM
     ShowUserAuth
