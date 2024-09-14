@@ -1,6 +1,6 @@
 apt-utils
-sudo wget net-tools iputils-ping iproute2
-wireguard
+sudo wget net-tools iputils-ping
+wireguard iproute2
 zip unzip
 postfix
 #
