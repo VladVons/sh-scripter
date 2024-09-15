@@ -1,4 +1,4 @@
-_Requires()
+_Requires_AsUser()
 {
     # user cant access /root folder, so copy to its home
 
@@ -12,6 +12,15 @@ _Requires()
     sys_ExecAs $cSuperUser "./script.sh" "$DirDst"
     #rm -r $DirDst
 }
+
+_Requires()
+{
+    Dir=as_user
+    cd $Dir
+    ./script.sh
+}
+
+
 
 _App()
 {
@@ -27,6 +36,7 @@ _Service()
 
 PostInstall()
 {
+    #_Requires_AsUser
     _Requires
     _App
     _Service

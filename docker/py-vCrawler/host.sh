@@ -6,6 +6,14 @@
 cImgName="vladvons/crawler"
 cCntName="crawler_client_v1"
 
+sys_ExecM()
+{
+    local aExec="$1"; local aMsg="$2";
+    echo "$0, $FUNCNAME($*)"
+
+    eval "$aExec"
+}
+
 _Run()
 {
     echo "$0->$FUNCNAME($*)"
@@ -13,6 +21,7 @@ _Run()
     echo "Image: $cImgName, container: $cCntName"
 
     docker run \
+        --detach \
         --privileged \
         --restart unless-stopped \
         --cap-add=NET_ADMIN \
@@ -24,7 +33,6 @@ _Run()
         --volume ./mnt:/mnt/host \
         --volume ./conf/wireguard:/etc/wireguard \
         $cImgName 
-        #--detach \
 
 }
 
@@ -42,6 +50,7 @@ Stop()
     docker stop $cCntName
     docker rm $cCntName
     docker ps -a
+    sleep 1
 }
 
 Run()
@@ -60,10 +69,10 @@ Run()
 
 
 #Stop
-#Run
+Run
 #
-#docker exec -it $cCntName /bin/bash
-docker exec -it crawler_client_v1 /bin/bash
+sys_ExecM "docker exec -it $cCntName /bin/bash"
+#docker exec -it crawler_client_v1 /bin/bash
 #docker restart crawler_client_v1
 #
 #docker exec -it -u admin $cCntName /bin/bash

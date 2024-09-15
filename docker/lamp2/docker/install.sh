@@ -119,7 +119,7 @@ install_Dist()
 install_Help()
 {
     echo "ussage: $0 [-d | -p]"
-    echo "example: ./install.sh -d python_ssh_scraper"
+    echo "example: ./install.sh -d python_scraper"
 }
 
 

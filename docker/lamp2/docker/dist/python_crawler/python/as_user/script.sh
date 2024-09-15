@@ -27,3 +27,5 @@ echo "=== run as user $(whoami) ==="
 PyVirt
 PyPkg
 PlayWright
+#
+mkdir -p ~/projects/{vMonit,vCrawler}
