@@ -26,4 +26,32 @@ app_CopyFile()
             cat $Item | envsubst > $FileDst
         done
     fi
+
+    Dir="f_arch$aVer"
+    if [ -d $Dir ]; then
+        log_Print "$0->$FUNCNAME, $Dir"
+
+        ls $Dir/*.zip $Dir/*.gz 2>/dev/null |\
+        while read Item; do
+            Inf=${Item}.inf
+            if [ -f $Inf ]; then
+               source $Inf
+
+               log_Print "unpack $Item to $dir"
+               mkdir -p $dir
+
+               if [[ "$Item" == *.tar.gz ]]; then
+                   tar -xzf $Item -C $dir
+               elif [[ "$Item" == *.zip ]]; then
+                   unzip $Item -d $dir
+               else
+                   log_Print "Unsupported archive $Item"
+               fi
+
+               unset dir
+            fi
+        done
+
+    fi
+
 }

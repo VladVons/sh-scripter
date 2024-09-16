@@ -5,14 +5,14 @@ bs4
 cffi
 jinja2
 lxml
+psutil
 
 #--- 
-psutil
-aiohttp_session 
-cryptography
-aiopg
-protego
-wtforms
+#aiohttp_session 
+#cryptography
+#aiopg
+#protego
+#wtforms
 
 #--- see script.sh->PlayWright()
 #playwright

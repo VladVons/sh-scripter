@@ -4,7 +4,11 @@
 # Author: Vladimir Vons <VladVons@gmail.com>
 
 cImgName="vladvons/crawler"
-cCntName="crawler_client_v1"
+
+CntName="crawler_client"
+CntVer="v1"
+cCntName="${CntName}_${CntVer}"
+
 
 sys_ExecM()
 {
@@ -14,7 +18,7 @@ sys_ExecM()
     eval "$aExec"
 }
 
-_Run()
+Run()
 {
     echo "$0->$FUNCNAME($*)"
 
@@ -32,11 +36,28 @@ _Run()
         --env-file ./host.conf \
         --volume ./mnt:/mnt/host \
         --volume ./conf/wireguard:/etc/wireguard \
+        --volume ./conf/vMonit:/root/projects/vMonit/Conf/Default \
         $cImgName 
 
 }
 
-_Restore()
+Commit()
+{
+  Ver=$(echo $CntVer | grep -o '[0-9]\+')
+  VerNext=$((Ver + 1))
+  VerNew=$(echo $CntVer | sed "s/[0-9]\+/$VerNext/")
+
+  CntNameNew="${CntName}_${VerNew}"
+  echo "$cCntName -> $CntNameNew"
+
+  #docker commit $cCntName $CntNameNew
+  docker images -a | grep $CntName
+
+  docker stop $cCntName
+  #docker rm $cCntName
+}
+
+Restore()
 {
     echo "$0->$FUNCNAME($*)"
 
@@ -45,7 +66,7 @@ _Restore()
     #docker attach $cCntName
 }
 
-Stop() 
+Remove() 
 {
     docker stop $cCntName
     docker rm $cCntName
@@ -53,7 +74,7 @@ Stop()
     sleep 1
 }
 
-Run()
+Exec()
 {
     echo "$0->$FUNCNAME($*)"
 
@@ -61,15 +82,16 @@ Run()
 
     docker ps -a
     if [ "$(docker ps -a | grep $cImgName)" ]; then
-        _Restore
+        Restore
     else
-        _Run
+        Run
     fi
 }
 
 
-#Stop
-Run
+#Remove
+Exec
+#Commit
 #
 sys_ExecM "docker exec -it $cCntName /bin/bash"
 #docker exec -it crawler_client_v1 /bin/bash
