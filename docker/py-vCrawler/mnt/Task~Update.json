@@ -3,7 +3,7 @@
     {
       "info": {
         "descr": "Crawler collect bot",
-        "enabled": false
+        "enabled": true
       },
       "update": { 
         "url": "https://download.1x1.com.ua/private/update/py-vCrawler_Collector/ver.json",

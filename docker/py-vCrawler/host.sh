@@ -3,7 +3,7 @@
 # Created: 2024.09.10
 # Author: Vladimir Vons <VladVons@gmail.com>
 
-cImgName="vladvons/crawler"
+cImgName="vladvons/crawler_client:v1"
 
 CntName="crawler_client"
 CntVer="v1"
@@ -41,6 +41,26 @@ Run()
 
 }
 
+Img_Save()
+{
+    Dir="./img"
+    mkdir -p $Dir
+
+    File=$(echo $cImgName | tr '/' '-')
+    File="./img/$File.docker.zst"
+
+    docker save $cImgName | zstd -zv > $File
+    echo "Saved to $File"
+}
+
+Img_Load()
+{
+  local aFile="$1";
+
+  zstd -dv --stdout $aFile | docker load
+  docker images -a
+}
+
 Commit()
 {
   Ver=$(echo $CntVer | grep -o '[0-9]\+')
@@ -71,6 +91,7 @@ Remove()
     docker stop $cCntName
     docker rm $cCntName
     docker ps -a
+
     sleep 1
 }
 
@@ -89,11 +110,14 @@ Exec()
 }
 
 
+#Img_Save
+#Img_Load img/vladvons-crawler_client:v1.docker.zst
+#
 #Remove
 Exec
 #Commit
 #
-sys_ExecM "docker exec -it $cCntName /bin/bash"
+#sys_ExecM "docker exec -it $cCntName /bin/bash"
 #docker exec -it crawler_client_v1 /bin/bash
 #docker restart crawler_client_v1
 #
