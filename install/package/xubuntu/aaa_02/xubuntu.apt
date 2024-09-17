@@ -2,6 +2,7 @@
 p7zip-full
 zip
 unzip
+genisoimage
 
 ### audio
 audacious

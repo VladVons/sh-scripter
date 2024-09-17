@@ -1,0 +1,24 @@
+Compress (.zip)
+    /admin/scripter/utils/mc.sh zip_p "%d" "%f" "%D"
+
+Compress (.tar)
+    /admin/scripter/utils/mc.sh tar_p "%d" "%f" "%D"
+
+Folder size
+    du -h -s %f
+
+Folder size sorted
+     du -h -d1 %d/ | sort -n -r
+     
+File size sorted
+    find . -type f | xargs ls -s | sort -rn | head -n 25
+
+Folder files count
+    find %f -type f | wc -l 
+
+Strip comments #
+    grep "^[^\#]" %f
+
+Strip spaces
+    cp %f %f.bak
+    sed 's/^[ \t]*//;s/[ \t]*$//' %f.bak > %f
