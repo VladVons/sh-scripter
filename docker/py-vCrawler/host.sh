@@ -37,6 +37,7 @@ Run()
         --volume ./mnt:/mnt/host \
         --volume ./conf/wireguard:/etc/wireguard \
         --volume ./conf/vMonit:/root/projects/vMonit/Conf/Default \
+        --volume ./conf/vCrawler:/root/projects/vCrawler/Conf/Client \
         $cImgName 
 
 }

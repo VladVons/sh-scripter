@@ -1,0 +1,13 @@
+# 2024-09-15
+
+[Interface]
+PrivateKey = xxx
+Address = 10.71.2.10/32
+
+[Peer]
+PublicKey = yyy
+Endpoint = vpn2.oster.com.ua:10721
+AllowedIPs = 10.71.2.0/24
+
+### Nat
+PersistentKeepalive = 25
