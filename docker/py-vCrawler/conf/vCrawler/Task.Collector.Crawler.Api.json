@@ -3,13 +3,13 @@
     "loader": {
         "model": {
             "type": "url",
-            "url": "http://1x1.com.ua:8182/api",
-            "user": "xxx",
-            "password": "yyy"
+            "url": "https://1x1.com.ua/crawler/api",
+            "user": "user01",
+            "password": "passw01"
         }
     },
     "db_auth" : {
-        "login": "aaa",
-        "passw": "bbb"
+        "login": "{% env CrawlerLogin %}",
+        "passw": "{% env CrawlerPassw %}"
     }
 }

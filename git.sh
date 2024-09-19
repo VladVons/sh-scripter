@@ -2,9 +2,11 @@
 # Created: 28.09.2016
 # Vladimir Vons, VladVons@gmail.com
 
+
+Project="sh-scripter"
 User="VladVons"
 Mail="vladvons@gmail.com"
-Url="https://github.com/$User/sh-scripter.git"
+Url="https://github.com/$User/$Project.git"
 
 
 Log()
@@ -129,6 +131,7 @@ Diff(){
 #GitUpdate
 
 clear
+echo "Repository: $Url"
 case $1 in
     Clean)              "$1"        "$2" "$3" ;;
     GitAuth)            "$1"        "$2" "$3" ;;

@@ -38,6 +38,7 @@ Run()
         --volume ./conf/wireguard:/etc/wireguard \
         --volume ./conf/vMonit:/root/projects/vMonit/Conf/Default \
         --volume ./conf/vCrawler:/root/projects/vCrawler/Conf/Client \
+        --volume ./conf/.profile:/root/.profile \
         $cImgName 
 
 }
@@ -114,8 +115,8 @@ Exec()
 #Img_Save
 #Img_Load img/vladvons-crawler_client:v1.docker.zst
 #
-#Remove
-Exec
+Remove
+#Exec
 #Commit
 #
 #sys_ExecM "docker exec -it $cCntName /bin/bash"

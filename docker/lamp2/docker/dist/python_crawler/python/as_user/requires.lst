@@ -6,12 +6,13 @@ cffi
 jinja2
 lxml
 psutil
+cryptography
+protego
 
 #--- 
 #aiohttp_session 
 #cryptography
 #aiopg
-#protego
 #wtforms
 
 #--- see script.sh->PlayWright()

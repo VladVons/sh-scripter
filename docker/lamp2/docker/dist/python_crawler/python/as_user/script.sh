@@ -20,7 +20,8 @@ PlayWright()
 {
     source $DirPy/bin/activate
     pip3 install playwright
-    playwright install firefox
+    #playwright install firefox
+    playwright install
 }
 
 echo "=== run as user $(whoami) ==="
