@@ -20,8 +20,9 @@ PlayWright()
 {
     source $DirPy/bin/activate
     pip3 install playwright
+
     #playwright install firefox
-    playwright install
+    playwright install chromium
 }
 
 echo "=== run as user $(whoami) ==="
@@ -29,4 +30,4 @@ PyVirt
 PyPkg
 PlayWright
 #
-mkdir -p ~/projects/{vMonit,vCrawler}
+mkdir -p /usr/lib/{vMonit,vCrawler}

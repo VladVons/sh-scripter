@@ -1,4 +1,5 @@
 ./init
-ssh
+#ssh
+postfix
 ./python
 ext/end

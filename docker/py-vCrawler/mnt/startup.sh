@@ -3,5 +3,5 @@
 #wg-quick up wg-crawler
 
 #-- monitor processes and versions
-cd /root/projects/vMonit
+cd /usr/lib/vMonit
 ./vMonit.sh &

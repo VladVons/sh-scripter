@@ -13,7 +13,7 @@ PostInstall()
     postconf -e inet_protocols=ipv4
 
     service postfix restart
-    echo "test body" | mail -s "test postfix $HOSTNAME" vladvons@gmail.com
+    echo -e "Subject: test postfix $HOSTNAME" | sendmail vladvons@gmail.com
 }
 
 #PostInstall

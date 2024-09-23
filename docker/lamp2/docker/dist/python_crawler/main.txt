@@ -1,9 +1,8 @@
 ---
 This image contains:
-ssh
 python
-scraper
-python playwrite browser emulator
+vMonit
+playwrite browser emulator
 
 To rebuild your custom image edit lamp2/docker/dist/DIST_NAME/main.pkg
 ---

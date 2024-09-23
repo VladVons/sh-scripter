@@ -1,0 +1,6 @@
+2024-09-23-пн, 16:52:08, ./docker_build.sh->Build()
+2024-09-23-пн, 16:52:08, ./docker_build.sh->install_Dist(*$)
+2024-09-23-пн, 16:52:08, ./docker_build.sh->pkg_Update
+2024-09-23-пн, 16:52:24, ./docker_build.sh->Build()
+2024-09-23-пн, 16:52:24, ./docker_build.sh->install_Dist(*$)
+2024-09-23-пн, 16:52:24, ./docker_build.sh->pkg_Update

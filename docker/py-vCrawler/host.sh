@@ -32,14 +32,16 @@ Run()
         --cap-add=SYS_MODULE \
         --name $cCntName \
         --hostname $cCntName \
-        --publish 10022:22 \
-        --env-file ./host.conf \
         --volume ./mnt:/mnt/host \
-        --volume ./conf/wireguard:/etc/wireguard \
-        --volume ./conf/vMonit:/root/projects/vMonit/Conf/Default \
-        --volume ./conf/vCrawler:/root/projects/vCrawler/Conf/Client \
-        --volume ./conf/.profile:/root/.profile \
+        --volume ./conf/vCrawler:/root/.config/vCrawler \
         $cImgName 
+
+        #--publish 10022:22 \
+        #--env-file ./host.conf \
+        #--volume ./conf/wireguard:/etc/wireguard \
+        #--volume ./conf/vMonit:/root/projects/vMonit/Conf/Default \
+        #--volume ./conf/vCrawler:/root/projects/vCrawler/Conf/Client \
+
 
 }
 
@@ -88,13 +90,23 @@ Restore()
     #docker attach $cCntName
 }
 
-Remove() 
+Stop() 
 {
     docker stop $cCntName
     docker rm $cCntName
     docker ps -a
 
     sleep 1
+}
+
+
+Remove() 
+{
+    Stop
+
+    docker rmi --force $cImgName
+    docker images -a | grep $cImgName
+    docker system prune -a --volumes
 }
 
 Exec()
@@ -115,7 +127,8 @@ Exec()
 #Img_Save
 #Img_Load img/vladvons-crawler_client:v1.docker.zst
 #
-Remove
+#Stop
+#Remove
 #Exec
 #Commit
 #
