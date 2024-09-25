@@ -124,16 +124,14 @@ Exec()
 }
 
 
-#Img_Save
+#Remove
 #Img_Load img/vladvons-crawler_client:v1.docker.zst
+#Img_Save
 #
 #Stop
-#Remove
 #Exec
 #Commit
 #
-#sys_ExecM "docker exec -it $cCntName /bin/bash"
 #docker exec -it crawler_client_v1 /bin/bash
+#sys_ExecM "docker exec -it $cCntName /bin/bash"
 #docker restart crawler_client_v1
-#
-#docker exec -it -u admin $cCntName /bin/bash
