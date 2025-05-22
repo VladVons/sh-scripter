@@ -1,4 +1,6 @@
-# $Now
+# created: $Now
+# server: $ServerConf
+# note: $Note 
 
 [Interface]
 PrivateKey = $UserPrivateKey
@@ -9,5 +11,5 @@ PublicKey = $ServerPublicKey
 Endpoint = $ServerIp:$ServerPort
 AllowedIPs = $Net
 
-### Nat
-#PersistentKeepalive = 15
+#-- Nat
+PersistentKeepalive = 25

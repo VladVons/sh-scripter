@@ -29,7 +29,8 @@ UUID=188624f0-e2c3-4879-b8a6-7b4ce2c7ddf8 none            swap    sw            
 //192.168.2.1/temp      /mnt/smb/tr24   cifs    username=guest,password=guest,noauto,iocharset=utf8,sec=ntlm,uid=1000,rw,vers=1.0,user  0  0
 //127.0.0.1/s777        /mnt/smb/s777   cifs    username=guest,password=guest,rw,dir_mode=0777,file_mode=0666,uid=65534,gid=65534,noauto,x-systemd.automount 0  0
 
-
+#--- mount ProxMox virtiofs
+map1-temp  /mnt/virtiofs  virtiofs  defaults,nofail  0  0
 
 #--- RAM temp
 tmpfs /tmp tmpfs defaults,noatime,nosuid,nodev,noexec,mode=1777,size=512M 0 0

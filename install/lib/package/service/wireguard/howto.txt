@@ -1,2 +1,0 @@
-import to linux network-manager client:
-nmcli connection import type wireguard file wg-VladVonsPc_11.conf

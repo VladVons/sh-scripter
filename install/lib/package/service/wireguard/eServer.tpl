@@ -2,7 +2,7 @@
 # Vladimir Vons, VladVons@gmail.com
 
 [Interface]
-Address = $aNetIp
+Address = $ServerCidr
 ListenPort = $aPort
 PrivateKey = ${UserPrivateKey}
 PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o ${aNetIf} -j MASQUERADE;

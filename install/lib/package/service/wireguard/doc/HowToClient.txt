@@ -1,0 +1,28 @@
+#!/bin/bash
+
+#apt install wireguard
+
+Conf=wg-crawler1_10
+
+Sys()
+{
+  cat /etc/wireguard/$Conf.conf
+
+  systemctl enable wg-quick@$Conf
+  systemctl start wg-quick@$Conf
+
+  #service wg-quick@$Conf restart
+}
+
+
+Desktop()
+{
+  #--- import to linux network-manager client:
+  nmcli connection import type wireguard file $Conf.conf
+
+  #nmcli connection show
+  #nmcli connection delete e3949475-e3cc-4b51-ba0e-eb8095957908
+}
+
+#Sys
+#Desktop

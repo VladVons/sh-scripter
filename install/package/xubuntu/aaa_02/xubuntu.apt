@@ -40,6 +40,8 @@ xfce4-clipman-plugin
 xfwm4-themes
 
 cheese
+gnome-system-tools
+gnome-software
 #gnome-disk-utility
 #gtk2-engines-xfce
 #gtk3-engines-xfce
@@ -49,7 +51,8 @@ htop
 #inkscape
 jpegoptim
 #kazam
-#language-pack-gnome-uk
+language-selector-gnome
+language-pack-gnome-uk
 #language-pack-uk
 #libreoffice-impress
 #libreoffice-l10n-uk
@@ -63,6 +66,7 @@ snapd
 #snapd-xdg-open
 speedcrunch
 ssh
+synaptic
 #telegram-desktop
 #thunderbird-locale-uk
 wget

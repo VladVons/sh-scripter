@@ -18,6 +18,8 @@ convmvfs /mnt/ufsx -o allow_other -o srcdir=/mnt/ufs -o icharset=koi8-u -o ochar
 
 mount -t vboxsf -o uid=XXX share-name /path/to/folder/share/
 
+mount -t virtiofs map1-temp /mnt/virtiofs
+
 #apt install sshfs
 #ssh-keygen -t rsa
 #ssh-copy-id -i ~/.ssh/id_rsa.pub vladvons@192.168.2.102

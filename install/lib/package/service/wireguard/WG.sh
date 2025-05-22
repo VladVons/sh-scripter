@@ -2,8 +2,11 @@
 # Created: 2023.02.08
 # Vladimir Vons, VladVons@gmail.com
 
+#---must be defined external
+#ServerConf=wg-server_1
 
 SysDir=/etc/wireguard
+ServerConfFile=$SysDir/$ServerConf.conf
 
 
 Version()
@@ -26,11 +29,18 @@ Install()
     #apt install wondershaper
 }
 
+NetIp()
+{
+  local aNetZerro="$1"; local aIp=$2;
+  echo "${aNetZerro/.0\//.$aIp/}"
+}
+
 ServiceInstall()
 {
     Log "$FUNCNAME($*)"
 
     sysctl -w net.ipv4.ip_forward=1
+
     systemctl enable wg-quick@$ServerConf
     systemctl start wg-quick@$ServerConf
     service wg-quick@$ServerConf restart
@@ -48,9 +58,10 @@ ServiceRemove()
 ServiceRestart()
 {
     Log "$FUNCNAME($*)"
+    Log "service wg-quick@$ServerConf restart"
 
     service wg-quick@$ServerConf restart
-    wg show
+    wg show $ServerConf
 }
 
 GenKeys()
@@ -71,14 +82,10 @@ ClientConf()
     local ServerAddress=$(grep "^Address" $ServerConfFile | awk -F "=" '{ print $2 }' | xargs | cut -d '.' -f 1,2,3)
     UserIp=${ServerAddress}.${UserNetIp}
 
-    if [ -z "$Net" ]; then
-        Net=${ServerAddress}.0/24
-    fi
-
     local Now=$(date +%Y-%m-%d)
     local ConfFile=$UserDir/$UserBase.conf
 
-    export UserPrivateKey UserIp ServerPublicKey ServerIp ServerPort Net Now
+    export UserPrivateKey UserIp ServerPublicKey ServerIp ServerPort ServerConf Net Now Note
     cat eClient.tpl | envsubst > $ConfFile
 
     qrencode --read-from=$ConfFile --type=png --output=$ConfFile.png
@@ -93,8 +100,11 @@ ClientToServer()
 
 ClientCreate()
 {
-    UserName=$1; UserNetIp=$2; Net=$3;
+    UserName=$1; UserNetIp=$2; aNote=$4
     Log "$FUNCNAME($*)"
+
+    # for envsubst
+    Note=$aNote
 
     UserBase="wg-${UserName}_${UserNetIp}"
     UserDir="$ServerConf/$UserBase"
@@ -115,10 +125,21 @@ ClientsCreate()
     done
 }
 
+ClientSideInite()
+{
+    local aConf=$1;
+    Log "$FUNCNAME($*)"
+
+    systemctl enable wg-quick@wg-oster
+    systemctl start wg-quick@wg-oster
+    service wg-quick@wg-oster restart
+}
+
 ServerCreate()
 {
-    local aNetIp=$1; local aPort=$2; local aNetIf=$3;
+    local aIpNo=$1; local aPort=$2; local aNetIf=$3;
     Log "$FUNCNAME($*)"
+    Log "ServerConfFile: $ServerConfFile"
 
     UserBase=$ServerConf
     UserDir="$ServerConf/$UserBase"
@@ -128,11 +149,12 @@ ServerCreate()
     cp $UserDir/* $SysDir
 
     local Now=$(date +%Y-%m-%d)
+    local ServerCidr=$(NetIp $Net $aIpNo)
 
-    export aNetIp aPort UserPrivateKey aNetIf Now
+    export ServerCidr aPort UserPrivateKey aNetIf Now
     cat eServer.tpl | envsubst > $ServerConfFile
 
-    ServiceInstall
+    #ServiceInstall
 }
 
 LimitSpeed()
