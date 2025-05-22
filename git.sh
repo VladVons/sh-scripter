@@ -91,8 +91,8 @@ GitSyncToServ()
   git add -u -v
   git commit -a -m "$aComment"
 
-  #git push -u origin master
-  git push -u origin master -f
+  git push -u origin master
+  #git push -u origin master -f
 }
 
 GitFromServ()
