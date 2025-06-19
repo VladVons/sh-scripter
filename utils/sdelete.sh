@@ -1,12 +1,23 @@
-File=/zero.tmp
+#!/bin/bash
+# VladVons@gmail.com
 
-echo "Filling free space with zeros into file $File.."
-sudo dd if=/dev/zero of=/$File bs=1M status=progress || true
+Pump()
+{
+  aFile="$1";
 
-echo "sync changes"
-sudo sync
 
-du -BG $File
+  echo "Pump file $aFile with zeros till disk full..."
+  dd if=/dev/zero of=$aFile bs=1M status=progress || true
 
-echo "remove file"
-sudo rm -f $File
+  echo "sync changes"
+  sync
+
+  echo
+  du -BG $aFile
+
+  echo "remove file"
+  rm -f $aFile
+}
+
+#Pump /zero.tmp
+Pump /mnt/data1/zero.tmp

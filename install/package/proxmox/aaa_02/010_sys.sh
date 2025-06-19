@@ -1,6 +1,6 @@
 # VladVons@gmail.com
 
-source $cDirLib/std.sh
+#source $cDirLib/std.sh
 
 
 SetUpdateAlternative()
@@ -38,7 +38,7 @@ PreInstall()
     # allow nested virtualization
     echo "options kvm-intel nested=Y" > /etc/modprobe.d/kvm-intel.conf
 
-    mkdir -p /mnt/{hdd/data1,iso,smb/temp,usb}
+    #mkdir -p /mnt/{hdd/data1,iso,smb/temp,usb}
 
     dpkg-reconfigure locales
     dpkg-reconfigure tzdata
@@ -47,3 +47,6 @@ PreInstall()
     SetUpdateAlternative
     Pkg_Update
 }
+
+#apt install --no-install-recommends $(grep -vE '^\s*($|#)' proxmox.apt)
+#PreInstall

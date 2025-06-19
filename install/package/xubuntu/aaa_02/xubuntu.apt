@@ -2,55 +2,60 @@
 p7zip-full
 zip
 unzip
+xarchiver
 
 ### audio
 audacious
 audio-recorder
 
 ### browser
-chromium-browser
-chromium-codecs-ffmpeg
-chromium-codecs-ffmpeg-extra
+#chromium-browser
+#chromium-codecs-ffmpeg
+#chromium-codecs-ffmpeg-extra
+firefox
 #firefox-locale-uk
 #lynx
 #icedtea-plugin
 
 ### network
 network-manager-openvpn
-#network-manager-openvpn-gnome
+network-manager-openvpn-gnome
 #nmap
 traceroute
 #tcpdump
+wiregueard
 
 ### remote desktop
 freerdp2-x11
 #xrdp
 #rdesktop
 gvncviewer
+remmina
+remmina-plugin-rdp
 
 ### file system
 gparted
 ntfs-3g
-cifs-utils
+#cifs-utils
+autofs
+smartmontools
 
 ### xfce
 xfce4-goodies
 xfce4-power-manager-plugins
 xfce4-clipman-plugin
-xfwm4-themes
+#xfwm4-themes
 
 cheese
 gnome-system-tools
 gnome-software
 #gnome-disk-utility
-#gtk2-engines-xfce
-#gtk3-engines-xfce
 hardinfo
-hddtemp
 htop
 #inkscape
 jpegoptim
 #kazam
+flameshot
 language-selector-gnome
 language-pack-gnome-uk
 #language-pack-uk
@@ -61,15 +66,15 @@ mc
 #printer-driver-cups-pdf
 #qemu-guest-agent
 #shiki-colors-xfwm-theme 
-#smartmontools
-snapd 
+snapd
 #snapd-xdg-open
 speedcrunch
 ssh
+pure-ftpd
 synaptic
 #telegram-desktop
 #thunderbird-locale-uk
-wget
+#wget
 whois
-winff
+#winff
 wput

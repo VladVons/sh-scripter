@@ -5,33 +5,33 @@
 
 
 #--- file manager
-#mc
+mc
 
 #--- info
-#htop
+htop
 #iftop
 #iotop
 
 #--- ups
 #apcupsd
 #apcupsd-cgi
-#nut
+nut
 
 #--- collectd 
 #collectd
-hddtemp
 #lm-sensors
 
 #--- services
-#fail2ban
+fail2ban
 #monit
 
 #--- HDD services
 smartmontools
 hddtemp
 hdparm
-parted
-ntfs-3g
+#parted
+#ntfs-3g
+lsscsi
 
 #--- ACPI
 #acpid
@@ -42,33 +42,41 @@ gpm
 #--- internet
 dnsutils
 net-tools
-pppoeconf
-lynx
+speedtest-cli
+#pppoeconf
+#lynx
 #git-core
-rsync
-axel
-wput
-wget
+#rsync
+#axel
+#wput
+#wget
 
 
 #-- mail
 #postfix
-#libsasl2-modules
+libsasl2-modules
 
 
 #--- misc
-#screen
+screen
 #mbmon
-#stress
+stress
+wakeonlan
+ethtool
+jq
 
 #--- hardware
 #hardinfo
-#lshw
+lshw
 
 #--- archiver
 zip
 unzip
-p7zip-full
+p7zip
 #rar
 #unrar
-unzstd
+
+#--- SDN
+#libpve-network-perl
+#dnsmasq
+#frr-pythontools
