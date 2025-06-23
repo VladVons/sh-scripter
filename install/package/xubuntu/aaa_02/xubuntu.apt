@@ -6,7 +6,7 @@ xarchiver
 
 ### audio
 audacious
-audio-recorder
+#audio-recorder
 
 ### browser
 #chromium-browser
@@ -23,7 +23,7 @@ network-manager-openvpn-gnome
 #nmap
 traceroute
 #tcpdump
-wiregueard
+wireguard
 
 ### remote desktop
 freerdp2-x11
